@@ -22,17 +22,18 @@
             </div>
         </div>
     </header>
-    <main class="grid grid-cols-2 w-350 justify-center items-center">
+    <main class="grid lg:grid-cols-2 lg:w-350 lg:justify-center lg:items-center">
         <div class="text-white m-10">
             <h1 class="font-bold ">Trouvez les meilleurs développeurs gràce à leur code</h1>
             <p>Analyse un profile, ses projets et ses langages en quelques secondes.</p>
         </div>
-        <div class="flex bg-indigo-950 text-white rounded-2xl">
-            <input type="text" placeholder="entrez un nom d'utilisateur..." class="bg-violet-800 m-5 p-2 rounded-2xl w-full">
-            <button class="bg-violet-700 m-5 p-2 hover:bg-violet-800 transition-color rounded-2xl ml-auto justify-end">Analyse</button>
+        <div class="flex bg-indigo-950 text-white rounded-2xl max-sm:m-2">
+            <input id="dev" type="text" placeholder="entrez un nom d'utilisateur..." class="bg-violet-800 m-5 p-2 rounded-2xl w-full">
+            <button id="analyse" class="bg-violet-700 m-5 p-2 hover:bg-violet-800 transition-color rounded-2xl ml-auto justify-end">Analyse</button>
         </div>
     </main>
 </body>
 <script type="module" src="script.js" defer></script>
+<script type="module" src="storage.js" defer></script>
 
 </html>
