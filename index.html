@@ -9,31 +9,32 @@
     <script src="shortlist.html"></script>
 </head>
 
-<body class="bg-indigo-900">
+<body class="bg-indigo-950">
     <header class="flex justify-center items-center m-5">
-        <div class="grid grid-row bg-indigo-950 w-350 h-30 rounded-2xl">
+        <div class="grid grid-row bg-indigo-900 w-350 h-30 rounded-2xl">
             <div class="justify-start">
-                <h1 class="font-bold text-white m-5">DevScope</h1>
+                <h1 class="font-bold text-white m-5 lg:text-4xl text-2xl">DevScope</h1>
             </div>
             <div class="text-white ml-auto justify-end mb-10">
                 <a href="index.html"
-                    class="m-10 bg-indigo-800 p-2 rounded-2xl hover:bg-indigo-900 transition-color">Recherche</a>
-                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-indigo-900 transition-color">shortlist</a>
+                    class="m-10 bg-indigo-950 p-2 rounded-2xl hover:bg-gray-800 transition-color">Recherche</a>
+                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-gray-800 transition-color">shortlist</a>
             </div>
         </div>
     </header>
-    <main class="grid lg:grid-cols-2 lg:w-350 lg:justify-center lg:items-center">
-        <div class="text-white m-10">
-            <h1 class="font-bold max-sm:text-center">Trouvez les meilleurs développeurs gràce à leur code</h1>
-            <p class="max-sm:text-center">Analyse un profile, ses projets et ses langages en quelques secondes.</p>
+    <main class="lg:flex lg:flex-col lg:w-350 lg:justify-center lg:items-center">
+        <div class="text-white m-20 text-center">
+            <h1 class="font-bold max-sm:text-center lg:text-5xl lg:m-5 text-2xl">Trouvez les meilleurs développeurs gràce à leur code</h1>
+            <p class="max-sm:text-center lg:text-2xl">Analyse un profile, ses projets et ses langages en quelques secondes.</p>
         </div>
-        <div class="bg-indigo-950 text-white rounded-2xl max-sm:m-2">
-            <form class="flex">
-                <input id="devONe" type="text" placeholder="entrez un nom d'utilisateur..."
-                    class="bg-indigo-900 m-5 p-2 rounded-2xl w-full">
-                <button id="analyse"
-                    class="bg-violet-700 m-5 p-2 hover:bg-violet-800 transition-color rounded-2xl ml-auto justify-end"><a href="profil.html">Analyse</a></button>
+        <div class="bg-indigo-900 text-white rounded-2xl max-sm:m-2 h-30 lg:w-300">
+            <form id="formRecherch" class="flex">
+                <input id="devOne" type="text" placeholder="entrez un nom d'utilisateur..."
+                    class="bg-indigo-950 m-5 p-5 rounded-2xl w-full">
+                <button id="analysefirst"
+                    class="bg-indigo-950 m-5 p-2 hover:bg-indigo-800 transition-color rounded-2xl ml-auto justify-end"><a href="profil.html">Analyse</a></button>
             </form>
+            <p id="error" class="text-red-500 ml-5 hidden">entrez le nom d'utilisateur</p>
         </div>
     </main>
 </body>
