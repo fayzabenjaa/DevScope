@@ -29,12 +29,14 @@
         </div>
         <div class="bg-indigo-900 text-white rounded-2xl max-sm:m-2 h-30 lg:w-300">
             <form id="formRecherch" class="flex">
-                <input id="devOne" type="text" placeholder="entrez un nom d'utilisateur..."
-                    class="bg-indigo-950 m-5 p-5 rounded-2xl w-full">
+                <div class="lg:w-265">
+                    <p id="error" class="text-red-500 ml-2"></p>
+                    <input id="devOne" type="text" placeholder="entrez un nom d'utilisateur..."
+                    class="bg-indigo-950 m-5 p-5 rounded-2xl w-full border">
+                </div>
                 <button id="analysefirst"
-                    class=" m-5 p-2 ml-auto justify-end text-[#201744] bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold"><a href="profil.html">Analyse</a></button>
+                    class=" m-5 p-2 ml-auto justify-end text-[#201744] bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Analyse</button>
             </form>
-            <p id="error" class="text-red-500 ml-5 hidden">entrez le nom d'utilisateur</p>
         </div>
     </main>
 </body>
