@@ -18,24 +18,66 @@
             <div class="text-white ml-auto justify-end mb-10">
                 <a href="index.html"
                     class="text-[#201744] m-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Recherche</a>
-                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-[#8B5CF6] transition-color font-bold">shortlist</a>
+                <a href="shortlist.html"
+                    class="m-10 rounded-2xl p-2 hover:bg-[#8B5CF6] transition-color font-bold">shortlist</a>
             </div>
         </div>
     </header>
     <main>
-        <div class=" lg:w-350 lg:justify-center lg:items-center">
-            <form id="formProfil" class="flex bg-indigo-900 text-white rounded-2xl lg:m-10 max-sm:m-2">
+        <article class=" lg:w-360 lg:m-10 lg:justify-center lg:items-center">
+            <form id="formProfil" class="flex bg-indigo-900 text-white rounded-2xl  max-sm:m-2">
                 <input id="devTwo" type="text" placeholder="entrez un nom d'utilisateur..."
                     class="bg-indigo-950 m-5 p-5 rounded-2xl w-full">
                 <button id="analyse"
                     class="text-[#201744] m-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Analyse</button>
             </form>
             <div id="errorPage" class="text-white font-bold justify-center text-center items-center"></div>
-        </div>
-        <div id="containerOfUsers"></div>
+        </article>
+        <article id="containerOfUsers">
+            <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 grid grid-cols-3">
+                <div>
+                    <div><img src="" alt="pfp img"></div>
+                    <div class="m-10">
+                        <h1 class="font-bold text-2xl">fayzabenjaa</h1>
+                        <p>fayza brnjaa</p>
+                        <!-- (si null : afficher login) -->
+                    </div>
+                </div>
+                <div>
+                    <div class="flex">
+                        <div class="m-5">
+                            <p class="font-bold m-1">following :</p>
+                            <p class="text-2xl font-bold">30</p>
+                        </div>
+                        <div class="m-5">
+                            <p class="font-bold m-1">followers :</p>
+                            <p class="text-2xl font-bold">30</p>
+                        </div>
+                        <div class="m-5">
+                            <p class="font-bold m-1">Statistique « Dépôts » :</p>
+                            <p class="text-2xl font-bold">7</p>
+                        </div>
+                    </div>
+                    <div class="m-5">
+                        <p class="m-1"><em>.coding ideas</em></p>
+                        <p class="m-1">.Membre depuis oct 2026</p>
+                        <!-- (si null : « Aucune bio renseignée ») -->
+                        <p class="flex"><img src="" alt="">.Safi/maroc</p>
+                        <!-- (si null : « Localisation non renseignée ») -->
+                    </div>
+                </div>
+                <div class="m-10 ml-auto justify-end">
+                    <button
+                        class="text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
+                        à la shortlist</button>
+                </div>
+            </div>
+        </article>
     </main>
 </body>
 <script type="module" src="script.js" defer></script>
 <script type="module" src="storage.js" defer></script>
 <script type="module" src="displayUsers.js" defer></script>
+<script type="module" src="api.js" defer></script>
+
 </html>
