@@ -5,9 +5,9 @@ let usersArray = githubUsers();
 const analyseFbtn = document.querySelector("#analysefirst");
 const iputOne = document.querySelector('#devOne');
 
-function validationFirst (event) {
-    event.preventDefault();
-    const userName = document.querySelector("#devOne").value.trim();
+analyseFbtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    let userName = document.querySelector("#devOne").value.trim();
     const error = document.querySelector("#error");
     if (userName === "") {
         iputOne.classList.add("border-red-500")
@@ -15,14 +15,16 @@ function validationFirst (event) {
     }else {
         const userContainer = document.querySelector("#userContainer");
         window.location.href = `profil.html`;
-        // displayUsers();
+        displayUsers();
+        
     }
-}
-analyseFbtn.addEventListener('click', validationFirst())
-
+});
+//profil
 const analysebtn = document.querySelectorAll(".analyse");
+let userName = document.querySelector("#devTwo")
 console.log("fayza",analysebtn)
 function userf () {
-    console.log("test");
+
+    displayUsers();
 }
 analysebtn.addEventListener('click', userf);
