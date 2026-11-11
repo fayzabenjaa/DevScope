@@ -1,4 +1,5 @@
 import { githubUsers, saveUsers} from "./storage.js";
+import { displayUsers } from "./displayUsers.js"
 let usersArray = githubUsers();
 
 const analyseFbtn = document.querySelector("#analysefirst");
@@ -12,9 +13,16 @@ function validationFirst (event) {
         iputOne.classList.add("border-red-500")
         error.innerText = `entrez le nom d'utilisateur`;
     }else {
+        const userContainer = document.querySelector("#userContainer");
         window.location.href = `profil.html`;
-        document.querySelector("#devTwo").value = userName;
+        // displayUsers();
     }
 }
-analyseFbtn.addEventListener('click', validationFirst);
+analyseFbtn.addEventListener('click', validationFirst())
 
+const analysebtn = document.querySelectorAll(".analyse");
+console.log("fayza",analysebtn)
+function userf () {
+    console.log("test");
+}
+analysebtn.addEventListener('click', userf);
