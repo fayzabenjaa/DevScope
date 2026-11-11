@@ -13,3 +13,15 @@ export async function getData(username) {
     }
 }
 
+export async function getRepo (username) {
+    try{
+        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        if(!response.ok) {
+            throw new Error("error HTTP : " + response.status)
+        }
+    }catch (error) {
+        console.log("Error", error.message);
+        throw error;
+    }
+}
+
