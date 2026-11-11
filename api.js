@@ -19,6 +19,8 @@ export async function getRepo (username) {
         if(!response.ok) {
             throw new Error("error HTTP : " + response.status)
         }
+        const repos = await response.json();
+        return repos;
     }catch (error) {
         console.log("Error", error.message);
         throw error;
