@@ -1,11 +1,10 @@
-import { githubUsers, saveUsers } from "./storage.js";
-import {shortlistCard,} from './shortlist.js';
 
-let usersArray = githubUsers();
+import {shortlistCard,} from './shortlist.js';
+import { addCandidats, getRepo, mockApi } from "./api.js";
 
 const containerOfUsers = document.querySelector("#userContainer");
 
-export function displayUsers(users = usersArray) {
+export function displayUsers(users) {
   containerOfUsers.innerHTML = "";
   users.forEach((user, i) => {
     containerOfUsers.innerHTML += `
@@ -47,26 +46,31 @@ export function displayUsers(users = usersArray) {
                             <p class="font-bold m-1">Dépôts</p>
                         </div>
                     </div>
-                    <button id="shortlistbtn"
-                        class="text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
+                    <div id="repoC">
+                    </div>
+                    <button 
+                        class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
                         à la shortlist</button>
                 </div>
 
             </div>`;
-    saveUsers(usersArray);
 
-    const shortlistbtn = document.querySelector('#shortlistbtn');
+    const shortlistbtn = document.querySelector('.shortlistbtn');
 
     shortlistbtn.addEventListener('click', async function (e) {
         e.preventDefault();
-       let shortlist = JSON.parse(localStorage.getItem("shortlist")) || [];
-       
-       if (!shortlist.some(u => u.login === user.login)) {
-        shortlist.push(user);
+       try {
+        const shortlist = await mockApi();
+        if(!shortlist.some(u => u.login === user.login)){
+            await addCandidats(user);
+        }
+        window.location.href ="shortlist.html"
+       }catch (error){
+        console.log(error);
        }
-       localStorage.setItem("shortlist", JSON.stringify(shortlist));
-       window.location.href ="shortlist.html"
+       
     })
     
   });
 }
+
