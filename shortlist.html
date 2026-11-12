@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevScope</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="shortlist.html"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-[#11152F] via-[#29205C] to-[#49318B] bg-fixed">
@@ -26,11 +25,18 @@
     <main>
         <div class="text-white m-10">
             <h1 class="m-5 font-bold lg:text-5xl text-3xl">Ma shortlist</h1>
-            <p>3 candidat(s) dans votre shortlist</p>
+            <p id="usersCounteur">0 candidat(s) dans votre shortlist</p>
+        </div>
+        <div id="shortlistC">
+            <script type="module">
+                import {shortlistCard} from "./shortlist.js"
+                shortlistCard();
+            </script>
         </div>
     </main>
 </body>
 <script type="module" src="script.js" defer></script>
 <script type="module" src="storage.js" defer></script>
+<script type="module" src="shortlist.js" defer></script>
 
 </html>
