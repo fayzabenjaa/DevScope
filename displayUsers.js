@@ -61,9 +61,12 @@ export function displayUsers(users) {
         e.preventDefault();
        try {
         const shortlist = await mockApi();
-        if(!shortlist.some(u => u.login === user.login)){
-            await addCandidats(user);
+        const alreadyExist = shortlist.some(u=> u.login.toLowerCase() === user.login.toLowerCase())
+        if (alreadyExist) {
+            alert('Ce candidat existe déjà dans la shortlist')
+            return;
         }
+            await addCandidats(user);
         window.location.href ="shortlist.html"
        }catch (error){
         console.log(error);
