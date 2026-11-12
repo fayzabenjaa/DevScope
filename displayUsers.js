@@ -1,4 +1,6 @@
 import { githubUsers, saveUsers } from "./storage.js";
+import {shortlistCard,} from './shortlist.js';
+
 let usersArray = githubUsers();
 
 const containerOfUsers = document.querySelector("#userContainer");
@@ -7,8 +9,8 @@ export function displayUsers(users = usersArray) {
   containerOfUsers.innerHTML = "";
   users.forEach((user, i) => {
     containerOfUsers.innerHTML += `
-        <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-3">
-                <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6">
+        <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
+                <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
                     <div>
                         <div><img src="${user.avatar_url}" alt="pfp img" class="w-32 h-32 rounded-full object-cover border-4 border-violet-400 shadow-lg m-2"></div>
                     </div>
@@ -30,7 +32,7 @@ export function displayUsers(users = usersArray) {
                         </p>
                     </div>
                 </div>
-                <div>
+                <div class="m-3">
                     <div class="grid grid-cols-3 gap-3 mt-8">
                         <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
                             <p class="text-4xl font-bold text-[#A78BFA]">${user.following}</p>
@@ -45,13 +47,27 @@ export function displayUsers(users = usersArray) {
                             <p class="font-bold m-1">Dépôts</p>
                         </div>
                     </div>
-                </div>
-                <div class="m-10 ml-auto justify-end">
-                    <button
+                    <button id="shortlistbtn"
                         class="text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
                         à la shortlist</button>
                 </div>
+
             </div>`;
     saveUsers(usersArray);
+
+    const shortlistbtn = document.querySelector('#shortlistbtn');
+
+    shortlistbtn.addEventListener('click', async function (e) {
+        e.preventDefault();
+        if(user === ""){
+            return;
+        }
+        try{
+            shortlistCard()
+        }
+        catch (error){
+            console.log("error");
+        }
+    })
   });
 }
