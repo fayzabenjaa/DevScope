@@ -6,7 +6,7 @@ export async function getData(username) {
             throw new Error("error HTTP : " + response.status)
         }
         const user = await response.json();
-        console.log(user.created_at);
+        // console.log(user.created_at);
         return user ;
     }catch(error) {
         console.log("Error", error.message);    
@@ -15,7 +15,7 @@ export async function getData(username) {
 
 export async function getRepo (username) {
     try{
-        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=created&direction=desc&per_page=3`);
         if(!response.ok) {
             throw new Error("error HTTP : " + response.status)
         }
@@ -27,3 +27,15 @@ export async function getRepo (username) {
     }
 }
 
+export async function mockApi () {
+    try{
+        const response = await fetch ("https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats")
+        if(!response.ok) {
+            throw new Error("error HTTP : " + response.status)
+        }
+        const candidats = await response.json();
+    }catch (error) {
+        console.log("Error", error.message);
+        throw error;
+    }
+}
