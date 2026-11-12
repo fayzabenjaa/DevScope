@@ -20,7 +20,7 @@ Analyse.addEventListener('click', async function (e) {
     inputTwo.classList.remove("border-red-500");
     try {
         const userData = await getData(UserLogin);
-        await addCandidats(userData);
+        
 
         displayUsers([userData]);
         
