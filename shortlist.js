@@ -3,14 +3,15 @@ let usersArray = githubUsers();
 
 
 const usersCounteur = document.querySelector("#usersCounteur");
-const shortlistbtn = document.querySelector('#shortlistbtn');
+const shortlistbtn = document.querySelector('.shortlistbtn');
 const shortlistContainer = document.querySelector('#shortlistC');
 
 
-export function shortlistCard() {
-    const users = JSON.parse(localStorage.getItem("shotlist")) || [];
-    shortlistContainer.innerHTML = "";
 
+export function shortlistCard() {
+    const users = JSON.parse(localStorage.getItem("shortlist")) || [];
+    usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
+    shortlistContainer.innerHTML = "";
     users.forEach((user)=>{
         shortlistContainer.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
@@ -40,3 +41,6 @@ export function shortlistCard() {
     `;
     })
 }
+
+
+
