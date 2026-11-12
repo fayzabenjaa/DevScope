@@ -59,15 +59,14 @@ export function displayUsers(users = usersArray) {
 
     shortlistbtn.addEventListener('click', async function (e) {
         e.preventDefault();
-        if(user === ""){
-            return;
-        }
-        try{
-            shortlistCard()
-        }
-        catch (error){
-            console.log("error");
-        }
+       let shortlist = JSON.parse(localStorage.getItem("shortlist")) || [];
+       
+       if (!shortlist.some(u => u.login === user.login)) {
+        shortlist.push(user);
+       }
+       localStorage.setItem("shortlist", JSON.stringify(shortlist));
+       window.location.href ="shortlist.html"
     })
+    
   });
 }

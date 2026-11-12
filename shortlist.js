@@ -4,18 +4,14 @@ let usersArray = githubUsers();
 
 const usersCounteur = document.querySelector("#usersCounteur");
 const shortlistbtn = document.querySelector('#shortlistbtn');
-const shortlistContainer = document.querySelector('#shortlistContainer');
+const shortlistContainer = document.querySelector('#shortlistC');
 
 
-export function test () {
-    console.log("oky")
-    window.location.href = `shoetlist.html`; 
-}
-
-
-export function shoetlistCard(users = usersArray) {
+export function shortlistCard() {
+    const users = JSON.parse(localStorage.getItem("shotlist")) || [];
     shortlistContainer.innerHTML = "";
-    users.forEach((user,i)=>{
+
+    users.forEach((user)=>{
         shortlistContainer.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
@@ -42,7 +38,5 @@ export function shoetlistCard(users = usersArray) {
                 </div>
     </div>
     `;
-    window.location.href = `shoetlist.html`;  
     })
-
 }
