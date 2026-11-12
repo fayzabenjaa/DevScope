@@ -1,10 +1,9 @@
-import { githubUsers, saveUsers} from "./storage.js";
+
 import { displayUsers } from "./displayUsers.js"
-import { getData } from "./api.js";
-let usersArray = githubUsers();
+import { getData, addCandidats } from "./api.js";
 
 const inputTwo = document.querySelector('#UserLogin');
-const Analyse = document.querySelector("#Analyse");
+const Analyse = document.querySelector(".Analyse");
 
 Analyse.addEventListener('click', async function (e) {
     e.preventDefault();
@@ -21,10 +20,22 @@ Analyse.addEventListener('click', async function (e) {
     inputTwo.classList.remove("border-red-500");
     try {
         const userData = await getData(UserLogin);
-        displayUsers([userData]);        
+        await addCandidats(userData);
+
+        displayUsers([userData]);
+        
+        // const repos = await getRepo(UserLogin);
+        // console.log(repos);
+        // repos.forEach(repo=> {
+        //     console.log(repo.name)
+        //     console.log(repo.language)
+        // })
     }
     catch (error) {
         errorUser.innerText = "Utilisateur introuvable";
         console.log(error);
     }
 })
+
+
+
