@@ -1,41 +1,65 @@
-import { githubUsers, saveUsers} from "./storage.js";
-// import { displayUsers } from "./displayUsers.js"
-let usersArray = githubUsers();
 
-const analyseFbtn = document.querySelector("#btnAnalysefirst");
-const iputOne = document.querySelector('#devOne');
-const inputTwo = document.querySelector('#UserLogin');
-const userContainer = document.querySelector("#userContainer");
+import { displayUsers } from "./displayUsers.js"
+import { getData } from './api.js';
 
-analyseFbtn.addEventListener('click', function (e) {
+
+const Analyse = document.querySelector(".Analyse");
+const anlysebtn = document.querySelector('#btnAnalysefirst')
+const iputT = document.querySelector('#UserLogin');
+const inputOne = document.querySelector('#devOne');
+
+
+// analyseFbtn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const userName = document.querySelector("#devOne").value.trim();
+//     const error = document.querySelector("#error");
+//     if (userName === "") {
+//         iputOne.classList.add("border-red-500")
+//         error.innerText = `entrez le nom d'utilisateur`;
+//     }else {
+//         // const userContainer = document.querySelector("#userContainer");
+//         window.location.href = `profil.html`;
+//         // displayUsers();
+//         console.log(usersArray)
+//     }
+// });
+
+anlysebtn.addEventListener('click', async function (e) {
     e.preventDefault();
-    const userName = document.querySelector("#devOne").value.trim();
-    const error = document.querySelector("#error");
-    if (userName === "") {
-        iputOne.classList.add("border-red-500")
+    const userLogin = document.querySelector("#devOne").value.trim();
+    const error = document.querySelector('#error');
+    if(userLogin === "" ){
+        inputOne.classList.add("border-red-500");
         error.innerText = `entrez le nom d'utilisateur`;
-    }else {
-        // const userContainer = document.querySelector("#userContainer");
-        window.location.href = `profil.html`;
-        // displayUsers();
-        console.log(usersArray)
+
     }
-});
+    
+})
 
-//profil
-
-const Analyse = document.querySelector("#Analyse");
-Analyse.addEventListener('click', function (e) {
+Analyse.addEventListener('click', async function (e) {
     e.preventDefault();
+
     const UserLogin = document.querySelector("#UserLogin").value.trim();
-    const errorUser = document.querySelector("#errorUser");
+    const errorUser = document.querySelector("#error");
+
     if (UserLogin === "") {
-        inputTwo.classList.add("border-red-500");
+        iputT.classList.add("border-red-500");
         errorUser.innerText = `entrez le nom d'utilisateur`;
-    } else {
-        errorUser.innerText = ``;
-        inputTwo.classList.remove("border-red-500");
-        console.log(UserLogin);
-        userContainer.classList.remove("hidden")
+        return;
+    }
+    errorUser.innerText = ``;
+    iputT.classList.remove("border-red-500");
+    try {
+        const userData = await getData(UserLogin);
+        window.location.href = `profil.html`;
+        displayUsers([userData]);
+    }
+    catch (error) {
+        errorUser.innerText = "Utilisateur introuvable";
+        console.log(error);
     }
 })
+
+
+
+
