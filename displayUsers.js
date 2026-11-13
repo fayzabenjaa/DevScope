@@ -15,7 +15,7 @@ export function displayUsers(users) {
                         <div><img src="${user.avatar_url}" alt="pfp img" class="w-32 h-32 rounded-full object-cover border-4 border-violet-400 shadow-lg m-2"></div>
                     </div>
                     <div class="m-2 text-sm text-indigo-200">
-                    <div class="m-5">
+                    <div class="lg:m-5 max-sm:m-1">
                         <h1 class="font-bold text-2xl"><a href="${user.html_url}" 
                             target="_blank"
                             rel="noopener noreferrer"
@@ -40,7 +40,7 @@ export function displayUsers(users) {
                 <div class="m-3">
                     <div class="grid lg:grid-cols-4 max-sm:grid-cols-3 gap-3 mt-8">
                         <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
-                            <p class="text-4xl font-bold text-[#A78BFA]">${user.following}</p>
+                            <p class="lg:text-4xl max-sm:text-2xl font-bold text-[#A78BFA]">${user.following}</p>
                             <p class="font-bold m-1">following</p>
                         </div>
                         <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
@@ -51,9 +51,6 @@ export function displayUsers(users) {
                         <p class="text-4xl font-bold text-[#A78BFA]">${user.public_repos}</p>
                             <p class="font-bold m-1">Dépôts</p>
                         </div>
-                        <button 
-                        class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
-                        à la shortlist</button>
                     </div>
                 </div>
             </div>
@@ -62,6 +59,11 @@ export function displayUsers(users) {
                     <div id="repoC" class="lg:grid lg:grid-cols-3">
                         
                     </div>
+                </div>
+                <div class="flex">
+                    <button 
+                        class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end">Ajouter
+                        à la shortlist</button>
                 </div>
     </div>`;
 
