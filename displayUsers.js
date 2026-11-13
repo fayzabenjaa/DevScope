@@ -55,7 +55,7 @@ export function displayUsers(users) {
 
             </div>`;
 
-    const shortlistbtn = document.querySelector('.shortlistbtn');
+    const shortlistbtn = document.querySelectorAll('.shortlistbtn')[i];
 
     shortlistbtn.addEventListener('click', async function (e) {
         e.preventDefault();
@@ -65,9 +65,10 @@ export function displayUsers(users) {
         if (alreadyExist) {
             alert('Ce candidat existe déjà dans la shortlist')
             return;
-        }
+        }else {
             await addCandidats(user);
         window.location.href ="shortlist.html"
+        }
        }catch (error){
         console.log(error);
        }
