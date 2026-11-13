@@ -8,14 +8,20 @@ export function displayUsers(users) {
   containerOfUsers.innerHTML = "";
   users.forEach((user, i) => {
     containerOfUsers.innerHTML += `
-        <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
+    <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10">
+        <div class=" lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
                     <div>
                         <div><img src="${user.avatar_url}" alt="pfp img" class="w-32 h-32 rounded-full object-cover border-4 border-violet-400 shadow-lg m-2"></div>
                     </div>
                     <div class="m-2 text-sm text-indigo-200">
                     <div class="m-5">
-                        <h1 class="font-bold text-2xl">@${user.login}</h1>
+                        <h1 class="font-bold text-2xl"><a href="${user.html_url}" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="underline text-purple-300 hover:text-purple-400">
+                            @${user.login}
+                            </a></h1>
                         ${user.name ? `<p>${user.name}</p>`: ""}
                         </div>
                         ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
@@ -32,7 +38,7 @@ export function displayUsers(users) {
                     </div>
                 </div>
                 <div class="m-3">
-                    <div class="grid grid-cols-3 gap-3 mt-8">
+                    <div class="grid lg:grid-cols-4 max-sm:grid-cols-3 gap-3 mt-8">
                         <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
                             <p class="text-4xl font-bold text-[#A78BFA]">${user.following}</p>
                             <p class="font-bold m-1">following</p>
@@ -50,11 +56,14 @@ export function displayUsers(users) {
                         à la shortlist</button>
                     </div>
                 </div>
-                <div>
+            </div>
+               <div class="m-3">
                     <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
-                    <div id="repoC"></div>
+                    <div id="repoC" class="lg:grid lg:grid-cols-3">
+                        
+                    </div>
                 </div>
-            </div>`;
+    </div>`;
 
     const shortlistbtn = document.querySelectorAll('.shortlistbtn')[i];
 
@@ -83,13 +92,11 @@ export function displayRepos([repos]){
     const repoC = document.querySelector('#repoC');
     repoC.innerHTML = "";
     repos.forEach((repo, i)=> {
-        repoC.innerHTML= `
-        <div class="grid grid-cols-3 gap-3 mt-8 m-10">
-            <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
+        repoC.innerHTML += `
+            <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center m-5">
                 <div class="text-4xl font-bold text-[#A78BFA]">${repo.name}</div>
                 <div class="font-bold m-1">${repo.language}</div>
             </div>
-        </div>
         `;
     })
     console.log(repos);
