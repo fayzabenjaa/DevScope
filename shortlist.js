@@ -1,15 +1,12 @@
-import { githubUsers, saveUsers} from "./storage.js";
-let usersArray = githubUsers();
-
-
+import { mockApi } from "./api.js";
 const usersCounteur = document.querySelector("#usersCounteur");
 const shortlistbtn = document.querySelector('.shortlistbtn');
 const shortlistContainer = document.querySelector('#shortlistC');
 
 
 
-export function shortlistCard() {
-    const users = JSON.parse(localStorage.getItem("shortlist")) || [];
+export async function shortlistCard() {
+    const users = await mockApi()
     usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
     shortlistContainer.innerHTML = "";
     users.forEach((user)=>{
