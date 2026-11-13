@@ -1,6 +1,6 @@
 
-import { displayUsers } from "./displayUsers.js"
-import { getData, addCandidats } from "./api.js";
+import { displayUsers, displayRepos } from "./displayUsers.js"
+import { getData, getRepo, addCandidats } from "./api.js";
 
 const inputTwo = document.querySelector('#UserLogin');
 const Analyse = document.querySelector(".Analyse");
@@ -20,11 +20,11 @@ Analyse.addEventListener('click', async function (e) {
     inputTwo.classList.remove("border-red-500");
     try {
         const userData = await getData(UserLogin);
-        
+        const repos = await getRepo(UserLogin);
 
         displayUsers([userData]);
+        displayRepos([repos])
         
-        // const repos = await getRepo(UserLogin);
         // console.log(repos);
         // repos.forEach(repo=> {
         //     console.log(repo.name)

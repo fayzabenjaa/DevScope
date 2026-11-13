@@ -45,14 +45,15 @@ export function displayUsers(users) {
                         <p class="text-4xl font-bold text-[#A78BFA]">${user.public_repos}</p>
                             <p class="font-bold m-1">Dépôts</p>
                         </div>
-                    </div>
-                    <div id="repoC">
-                    </div>
-                    <button 
+                        <button 
                         class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Ajouter
                         à la shortlist</button>
+                    </div>
                 </div>
-
+                <div>
+                    <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
+                    <div id="repoC"></div>
+                </div>
             </div>`;
 
     const shortlistbtn = document.querySelectorAll('.shortlistbtn')[i];
@@ -76,5 +77,25 @@ export function displayUsers(users) {
     })
     
   });
+}
+
+export function displayRepos([repos]){
+    const repoC = document.querySelector('#repoC');
+    repoC.innerHTML = "";
+    repos.forEach((repo, i)=> {
+        repoC.innerHTML= `
+        <div class="grid grid-cols-3 gap-3 mt-8 m-10">
+            <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center">
+                <div class="text-4xl font-bold text-[#A78BFA]">${repo.name}</div>
+                <div class="font-bold m-1">${repo.language}</div>
+            </div>
+        </div>
+        `;
+    })
+    console.log(repos);
+        // repos.forEach((repo, i)=> {
+        //     console.log(repo.name)
+        //     console.log(repo.language)
+        // })
 }
 
