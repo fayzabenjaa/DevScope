@@ -5,7 +5,7 @@ import { getData, getRepo, addCandidats } from "./api.js";
 const inputTwo = document.querySelector('#UserLogin');
 const Analyse = document.querySelector(".Analyse");
 
-Analyse.addEventListener('click', async function (e) {
+async function showUser(e) {
     e.preventDefault();
 
     const UserLogin = document.querySelector("#UserLogin").value.trim();
@@ -35,7 +35,19 @@ Analyse.addEventListener('click', async function (e) {
         errorUser.innerText = "Utilisateur introuvable";
         console.log(error);
     }
-})
+}
+
+const params = new URLSearchParams(window.location.search);
+const username =params.get("username");
+
+ if(username){   
+        inputTwo.value = username;
+        showUser(new Event("submit"));
+    }
+
+Analyse.addEventListener('click', showUser );
+
+
 
 
 
