@@ -60,3 +60,23 @@ export async function addCandidats(candidat) {
         throw error;
     }
 }
+export async function removeCandidat(candidat) {
+    try{
+        const response = await fetch(`https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats/${candidat.id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(candidat)
+            }
+        );
+        if(!response.ok) {
+            throw new Error("error HTTP :" + response.status)
+        }
+        return await response.json();
+    } catch (error){
+        console.log("Error", error.message);
+        throw error;
+    }
+}

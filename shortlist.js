@@ -1,4 +1,4 @@
-import { mockApi } from "./api.js";
+import { mockApi, removeCandidat } from "./api.js";
 const usersCounteur = document.querySelector("#usersCounteur");
 const shortlistbtn = document.querySelector('.shortlistbtn');
 const shortlistContainer = document.querySelector('#shortlistC');
@@ -9,7 +9,7 @@ export async function shortlistCard() {
     const users = await mockApi()
     usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
     shortlistContainer.innerHTML = "";
-    users.forEach((user)=>{
+    users.forEach((user, i)=>{
         shortlistContainer.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
@@ -18,7 +18,11 @@ export async function shortlistCard() {
                     </div>
                     <div class="m-2 text-sm text-indigo-200">
                     <div class="m-5">
-                        <h1 class="font-bold text-2xl">@${user.login}</h1>
+                        <h1 class="font-bold text-2xl"><a href="${user.html_url}" 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="underline text-purple-300 hover:text-purple-400">
+                            @${user.login}</a></h1>
                         ${user.name ? `<p>${user.name}</p>`: ""}
                         </div>
                         ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
@@ -34,8 +38,20 @@ export async function shortlistCard() {
                         </p>
                     </div>
                 </div>
+                <button class="deletbnt text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end" >delet</button>
     </div>
     `;
+    const deletbnt = document.querySelectorAll('.deletbnt')[i]
+        deletbnt.addEventListener('click', async function (e) {
+            e.preventDefault();
+           try {
+                await removeCandidat(user);
+                await shortlistCard();
+           }catch (error){
+            console.log(error);
+           }
+           
+        })
     })
 }
 
