@@ -79,6 +79,7 @@ export function displayUsers(users) {
             return;
         }else {
             await addCandidats(user);
+
         window.location.href ="shortlist.html"
         }
        }catch (error){
@@ -95,16 +96,16 @@ export function displayRepos([repos]){
     repoC.innerHTML = "";
     repos.forEach((repo, i)=> {
         repoC.innerHTML += `
-            <div class="bg-[#1E1B4B]/80 rounded-2xl p-5 text-center m-5">
+            <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl  p-5 m-5 text-indigo-200">
                 <div class="text-4xl font-bold text-[#A78BFA]">${repo.name}</div>
                 <div class="font-bold m-1">${repo.language}</div>
+                <div class="font-bold m-1 ml-auto justify-end">
+                   <p>Dernière mise à jour : </p>
+                   <p>${new Date(repo.updated_at).toLocaleDateString()}</p>
+                </div>
             </div>
         `;
     })
     console.log(repos);
-        // repos.forEach((repo, i)=> {
-        //     console.log(repo.name)
-        //     console.log(repo.language)
-        // })
 }
 
