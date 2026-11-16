@@ -44,7 +44,7 @@ La réalisation de ce projet m'a permis de renforcer mes compétences en dévelo
 - Amélioration de mes compétences en manipulation du DOM et en gestion des événements.
 - Gestion des états de chargement et des messages d'erreur.
 - Création d'interfaces responsives avec Tailwind CSS.
-## 5. Sources et documentation
+## 5. Sources de documentation
 
 Les ressources suivantes m'ont aidé à comprendre et à utiliser les technologies du projet.
 

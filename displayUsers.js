@@ -3,6 +3,7 @@ import {shortlistCard,} from './shortlist.js';
 import { addCandidats, getRepo, mockApi } from "./api.js";
 
 const containerOfUsers = document.querySelector("#userContainer");
+const users = []
 
 export function displayUsers(users) {
   containerOfUsers.innerHTML = "";
@@ -96,10 +97,11 @@ export function displayRepos([repos]){
     repoC.innerHTML = "";
     repos.forEach((repo, i)=> {
         repoC.innerHTML += `
-            <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl  p-5 m-5 text-indigo-200">
-                <div class="text-4xl font-bold text-[#A78BFA]">${repo.name}</div>
-                <div class="font-bold m-1">${repo.language}</div>
-                <div class="font-bold m-1 ml-auto justify-end">
+            <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl  p-5 m-5 text-indigo-200"> 
+            <i class="fa-brands fa-github fa-xs" style="color: rgb(126, 88, 238);" src=></i>
+              <div class="text-4xl font-bold test-white">${repo.name}</div>
+                <div class="font-bold m-1 text-[#A78BFA]">${repo.language}</div>
+                <div class="font-bold m-1 ml-auto justify-end text-indigo-300/70">
                    <p>Dernière mise à jour : </p>
                    <p>${new Date(repo.updated_at).toLocaleDateString()}</p>
                 </div>
