@@ -33,7 +33,9 @@ const error = document.querySelector('#error');
     
 }
 
-anlysebtn.addEventListener('click', show)
+if (anlysebtn){
+    anlysebtn.addEventListener('click', show)
+}
 
 
 
