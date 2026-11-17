@@ -1,9 +1,8 @@
-
-import {shortlistCard,} from './shortlist.js';
-import { addCandidats, getRepo, mockApi } from "./api.js";
+import { shortlistCard } from "./shortlist.js";
+import { addCandidats, getRepo, mockApi, getAllRepos } from "./api.js";
 
 const containerOfUsers = document.querySelector("#userContainer");
-const users = []
+const users = [];
 
 export function displayUsers(users) {
   containerOfUsers.innerHTML = "";
@@ -23,11 +22,11 @@ export function displayUsers(users) {
                             class="underline text-purple-300 hover:text-purple-400">
                             @${user.login}
                             </a></h1>
-                        ${user.name ? `<p>${user.name}</p>`: ""}
+                        ${user.name ? `<p>${user.name}</p>` : ""}
                         </div>
                         ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
-                        <p class="m-1">📅 Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
-                        ${user.location ? `<p class="flex">📍 ${user.location}</p>`: "" }
+                        <p class="m-1"> Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
+                        ${user.location ? `<p class="flex"> ${user.location}</p>` : ""}
                         <p class="m-1">link to github profile : 
                             <a href="${user.html_url}" 
                             target="_blank"
@@ -56,47 +55,65 @@ export function displayUsers(users) {
                 </div>
             </div>
                <div class="m-3">
-                    <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
-                    <div id="repoC" class="lg:grid lg:grid-cols-3">
-                        
-                    </div>
-                </div>
-                <div class="flex">
+                        <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
+                        <input id="searchRepo" type="text" placeholder="entrez le nom de dépôts..." class="bg-indigo-950 m-5 p-3 rounded-2xl w-full border">
+                        <div class="flex">
                     <button 
                         class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end">Ajouter
                         à la shortlist</button>
                 </div>
+                    <div id="repoC" class="lg:grid lg:grid-cols-3">
+                        
+                    </div>
+                </div>
+                
     </div>`;
+    const searchRepo = document.querySelector("#searchRepo");
 
-    const shortlistbtn = document.querySelectorAll('.shortlistbtn')[i];
+if (searchRepo) {
+    const repoC = document.querySelector("#repoC");
 
-    shortlistbtn.addEventListener('click', async function (e) {
-        e.preventDefault();
-       try {
-        const shortlist = await mockApi();
-        const alreadyExist = shortlist.some(u=> u.login.toLowerCase() === user.login.toLowerCase())
-        if (alreadyExist) {
-            alert('Ce candidat existe déjà dans la shortlist')
-            return;
-        }else {
-            await addCandidats(user);
+    searchRepo.addEventListener("input", async function () {
+        const wantedRepo = searchRepo.value.toLowerCase();
 
-        window.location.href ="shortlist.html"
-        }
-       }catch (error){
-        console.log(error);
-       }
-       
-    })
-    
+        const allRepos = await getAllRepos(user.login);
+
+        const filteredRepos = allRepos.filter((repo) => {
+            return repo.name.toLowerCase().includes(wantedRepo);
+        });
+
+        repoC.innerHTML = "";
+
+        filteredRepos.forEach((repo) => {
+            repoC.innerHTML += `
+                <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl p-5 m-5 text-indigo-200">
+                    <i class="fa-brands fa-github fa-xs"></i>
+
+                    <div class="text-4xl font-bold text-white">
+                        ${repo.name}
+                    </div>
+
+                    <div class="font-bold m-1 text-[#A78BFA]">
+                        ${repo.language || "Non spécifié"}
+                    </div>
+
+                    <div class="font-bold m-1 ml-auto justify-end text-indigo-300/70">
+                        <p>Dernière mise à jour :</p>
+                        <p>${new Date(repo.updated_at).toLocaleDateString()}</p>
+                    </div>
+                </div>
+            `;
+        });
+    });
+}
   });
 }
 
-export function displayRepos([repos]){
-    const repoC = document.querySelector('#repoC');
-    repoC.innerHTML = "";
-    repos.forEach((repo, i)=> {
-        repoC.innerHTML += `
+export function displayRepos([repos]) {
+  const repoC = document.querySelector("#repoC");
+  repoC.innerHTML = "";
+  repos.forEach((repo, i) => {
+    repoC.innerHTML += `
             <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl  p-5 m-5 text-indigo-200"> 
             <i class="fa-brands fa-github fa-xs" style="color: rgb(126, 88, 238);" src=></i>
               <div class="text-4xl font-bold test-white">${repo.name}</div>
@@ -107,7 +124,6 @@ export function displayRepos([repos]){
                 </div>
             </div>
         `;
-    })
-    console.log(repos);
+  });
+  console.log(repos);
 }
-
