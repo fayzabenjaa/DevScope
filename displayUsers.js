@@ -68,6 +68,28 @@ export function displayUsers(users) {
                 </div>
                 
     </div>`;
+    
+    const shortlistbtn = document.querySelectorAll('.shortlistbtn')[i];
+
+    shortlistbtn.addEventListener('click', async function (e) {
+        e.preventDefault();
+       try {
+        const shortlist = await mockApi();
+        const alreadyExist = shortlist.some(u=> u.login.toLowerCase() === user.login.toLowerCase())
+        if (alreadyExist) {
+            alert('Ce candidat existe déjà dans la shortlist')
+            return;
+        }else {
+            await addCandidats(user);
+
+        window.location.href ="shortlist.html"
+        }
+       }catch (error){
+        console.log(error);
+       }
+       
+    })
+
     const searchRepo = document.querySelector("#searchRepo");
 
 if (searchRepo) {
