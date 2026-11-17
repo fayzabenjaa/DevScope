@@ -65,35 +65,14 @@ export async function shortlistCard() {
                     </button>
                     <button 
                     data-id="${user.id}" 
-                    class="deletbnt text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
+                    class="deletbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
                     Delete
                     </button>
                 </div>
 
             </div>
         `;
-        //delet
-const deletbnt = shortlistContainer.querySelectorAll(".deletbnt")[i];
-
-            deletbnt.addEventListener("click", async function (e) {
-            e.preventDefault();
-
-            const id = Number(this.dataset.id);
-
-            if (!confirm("Supprimer cet utilisateur ?")) return;
-
-            try {
-                await removeCandidat(id);
-                users = users.filter((user) => Number(user.id) !== id);
-
-                console.log("delet id :", id);
-
-                await shortlistCard();
-
-            } catch (error) {
-                console.error(error);
-            }
-        });
+       const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
     });
 }
 
@@ -144,11 +123,38 @@ if(searchShortlist){
                         </p>
                     </div>
                 </div>
-                <button class="deletbnt text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end" >delet</button>
+                <button class="deletbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end" >delet</button>
     </div>
     `;
     })
 })
 
 }
+
+ //delet
+ if(shortlistContainer){
+    shortlistContainer.addEventListener("click", async function (e) {
+            const button = e.target.closest(".deletbtn")
+            if(!button) return;
+
+            const id = Number(button.dataset.id);
+
+            console.log("candidat id :", id); 
+
+            if (!confirm("Supprimer cet utilisateur ?")) return;
+
+            try {
+                await removeCandidat(id);
+                // users = users.filter((user) => Number(user.id) !== id);
+
+                console.log("candidate deleted!");
+
+                await shortlistCard();
+
+            } catch (error) {
+                console.error(error);
+            }
+        });    
+ }
+
 
