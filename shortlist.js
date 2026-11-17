@@ -131,6 +131,7 @@ if(searchShortlist){
 
 }
 
+
  //delet
  if(shortlistContainer){
     shortlistContainer.addEventListener("click", async function (e) {
@@ -156,5 +157,6 @@ if(searchShortlist){
             }
         });    
  }
+ 
 
 
