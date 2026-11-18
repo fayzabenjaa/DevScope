@@ -35,6 +35,48 @@
             </script>
         </div>
     </main>
+    <div id="bgblur"
+        class="flex justify-center w-full h-full bg-[rgba(0,0,0,0.5)] fixed inset-0 overflow-y-auto overflow-x-hidden fixed z-500 p-2 ">
+        <div id="popup"
+            class="bg-gradient-to-br from-[#11152F] via-[#29205C] to-[#49318B] bg-fixed rounded-2xl relative lg:w-150 max-sm:w-80 lg:h-130 flex-row text-start max-sm:justify-center max-sm:items-center mt-10 text-white">
+            <div class=" m-3">
+                <div class="flex">
+                    <p class="m-3 ">mise à jour du profil</p>
+                    <button id="AnnulerX" class="Annuler ml-auto justify-end m-2">X</button>
+                </div>
+                <h1 class="font-bold text-2xl ">Modifie le candidat</h1>
+            </div>
+            <div class="flex flex-col m-3">
+                <label for="text" class="m-3">statut de recrutement</label>
+                <select name="text" id="statut" class=" bg-indigo-950 p-3 rounded-2xl border">
+                    <option value="contacter">À contacter</option>
+                    <option value="Entretien">Entretien</option>
+                    <option value="Retenu">Retenu</option>
+                    <option value="Refusé">Refusé</option>
+                </select>
+            </div>
+            <div class="flex flex-col m-3">
+                <label for="text" class="m-2">note</label>
+                <select name="text" id="note" class="bg-indigo-950 p-3 rounded-2xl border">
+                    <option value="5">5/5</option>
+                    <option value="4">4/5</option>
+                    <option value="3">3/5</option>
+                    <option value="2">2/5</option>
+                    <option value="1">1/5</option>
+                </select>
+            </div>
+            <div class="m-3 flex flex-col">
+                <label for="text">note interne</label>
+                <input type="text" placeholder="entrer la note" class="bg-indigo-950 m-2 p-5 rounded-2xl w-70 border">
+            </div>
+            <div class="flex flex-row ml-auto justify-end">
+                <button id="Annuler" class="Annuler bg-[#1C2233] rounded-2xl p-2 m-2">Annuler</button>
+                <button id="enregistrer" class="text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Enregistrer</button>
+            </div>
+
+        </div>
+    </div>
+    
 </body>
 <script type="module" src="script.js" defer></script>
 <script type="module" src="storage.js" defer></script>
