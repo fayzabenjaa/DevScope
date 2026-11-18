@@ -73,6 +73,7 @@ export async function shortlistCard() {
             </div>
         `;
        const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
+       const editbtn = shortlistContainer.querySelector(".editbtn")[i];
     });
 }
 
@@ -135,10 +136,10 @@ if(searchShortlist){
  //delet
  if(shortlistContainer){
     shortlistContainer.addEventListener("click", async function (e) {
-            const button = e.target.closest(".deletbtn")
-            if(!button) return;
+            const buttondelet = e.target.closest(".deletbtn")
+            if(!buttondelet) return;
 
-            const id = Number(button.dataset.id);
+            const id = Number(buttondelet.dataset.id);
 
             console.log("candidat id :", id); 
 
@@ -157,6 +158,33 @@ if(searchShortlist){
             }
         });    
  }
- 
 
+ //edit
+ if(shortlistContainer){
+    shortlistContainer.addEventListener('click', async function (e) {
+        bgblur.classList.remove('hidden')
+        // const buttonedit = e.target.closest(".editbtn")
+        // if(!buttonedit) return;
+        
+        // const idedit = Number(buttonedit.dataset.id);
+
+        // console.log('candidat id :', id);
+        // try{
+        //     bgblur.classList.remove('hidden')
+        // }catch(error){
+        //     console.error(error);
+        // }
+        
+    })
+ }
+ const Annuler = document.querySelector('#Annuler');
+ const AnnulerX = document.querySelector('#AnnulerX')
+ const  bgblur = document.querySelector('#bgblur');
+  Annuler.addEventListener('click', function(){
+    bgblur.classList.add('hidden') 
+})
+AnnulerX.addEventListener('click', function(){
+    bgblur.classList.add('hidden')
+})
+ 
 
