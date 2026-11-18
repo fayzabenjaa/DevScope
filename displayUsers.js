@@ -161,6 +161,12 @@ if(filterbuttons){
         })
         repoC.innerHTML ="";
 
+        if(filterRepos.length === 0){
+            repoC.innerHTML +=`
+            <p class="flex justify-center items-center m-10 font-bold text-red-500">Aucun dépôt trouvé pour le langage ${language}</p>`;
+
+        }
+
         filterRepos.forEach((repo)=> {
             repoC.innerHTML += `
                 <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl p-5 m-5 text-indigo-200">
