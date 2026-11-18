@@ -56,7 +56,15 @@ export function displayUsers(users) {
             </div>
                <div class="m-3">
                         <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
-                        <input id="searchRepo" type="text" placeholder="entrez le nom de dépôts..." class="bg-indigo-950 m-5 p-3 rounded-2xl w-full border">
+                        <div class="flex flex-row max-sm:flex-col">
+                            <input id="searchRepo" type="text" placeholder="entrez le nom de dépôts..." class="bg-indigo-950 m-5 p-3 rounded-2xl w-full max-sm:w-60 border">
+                             <div class="flex flex-row">
+                                <button id="JS" class="m-2 bg-[#1C2233] rounded-2xl p-2  w-22">JavaScript</button>
+                                <button id="Java" class="m-2 bg-[#1C2233] rounded-2xl p-2  w-22">Java</button>
+                                <button id="Php" class="m-2 bg-[#1C2233] rounded-2xl p-2 w-22">Php</button>
+                                <button id="Python" class="m-2 bg-[#1C2233] rounded-2xl p-2 w-22">Python</button>
+                            </div>
+                        </div>
                         <div class="flex">
                     <button 
                         class="shortlistbtn text-[#201744] m-2 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end">Ajouter
