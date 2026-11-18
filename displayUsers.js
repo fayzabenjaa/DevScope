@@ -59,10 +59,10 @@ export function displayUsers(users) {
                         <div class="flex flex-row max-sm:flex-col">
                             <input id="searchRepo" type="text" placeholder="entrez le nom de dépôts..." class="bg-indigo-950 m-5 p-3 rounded-2xl w-full max-sm:w-60 border">
                              <div id="filterbuttons" class="flex flex-row">
-                                <button id="JS" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22">JavaScript</button>
-                                <button id="Java" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22">Java</button>
-                                <button id="Php" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2 w-22">Php</button>
-                                <button id="Python" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2 w-22">Python</button>
+                                <button id="JS" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22 font-bold">JavaScript</button>
+                                <button id="Java" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22 font-bold">Java</button>
+                                <button id="Php" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2 w-22 font-bold">Php</button>
+                                <button id="Python" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2 w-22 font-bold">Python</button>
                             </div>
                         </div>
                         <div class="flex">
@@ -145,6 +145,14 @@ const pythonBtn = document.querySelector('#Python')
 if(filterbuttons){
     filterbuttons.addEventListener('click', async function(e){
         if(e.target.tagName !== 'BUTTON') return;
+        const clickedBtn = e.target;
+        
+        filterbuttons.querySelectorAll('button').forEach((btn)=>{
+            btn.className = 'm-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22 font-bold'
+        })
+        
+        clickedBtn.className ='text-[#201744] bg-[#A78BFA] hover:bg-[#8B5CF6] rounded-2xl m-2 p-2 w-22 font-bold'
+
         const language = e.target.textContent.toLowerCase();
         
         const allTheRepos = await getAllRepos(user.login);
