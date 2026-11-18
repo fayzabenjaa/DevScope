@@ -58,7 +58,7 @@ export function displayUsers(users) {
                         <h1 class="m-5 font-bold text-2xl">Dépôts</h1>
                         <div class="flex flex-row max-sm:flex-col">
                             <input id="searchRepo" type="text" placeholder="entrez le nom de dépôts..." class="bg-indigo-950 m-5 p-3 rounded-2xl w-full max-sm:w-60 border">
-                             <div class="flex flex-row">
+                             <div id="filterbuttons" class="flex flex-row">
                                 <button id="JS" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22">JavaScript</button>
                                 <button id="Java" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2  w-22">Java</button>
                                 <button id="Php" class="m-2 bg-[#1E1B4B]/80 hover:bg-[#1E1B4B]/100 rounded-2xl p-2 w-22">Php</button>
@@ -97,11 +97,11 @@ export function displayUsers(users) {
        }
        
     })
-
+//search input
     const searchRepo = document.querySelector("#searchRepo");
+    const repoC = document.querySelector("#repoC");
 
 if (searchRepo) {
-    const repoC = document.querySelector("#repoC");
 
     searchRepo.addEventListener("input", async function () {
         const wantedRepo = searchRepo.value.toLowerCase();
@@ -135,6 +135,45 @@ if (searchRepo) {
             `;
         });
     });
+}
+//filter
+const filterbuttons = document.querySelector('#filterbuttons');
+const jsBtn = document.querySelector('#JS');
+const javaBtn = document.querySelector('#Java');
+const phpBtn = document.querySelector('#Php');
+const pythonBtn = document.querySelector('#Python')
+if(filterbuttons){
+    filterbuttons.addEventListener('click', async function(e){
+        if(e.target.tagName !== 'BUTTON') return;
+        const language = e.target.textContent.toLowerCase();
+        
+        const allTheRepos = await getAllRepos(user.login);
+        const filterRepos = allTheRepos.filter((repo)=> {
+            return repo.language && repo.language.toLowerCase() === language
+        })
+        repoC.innerHTML ="";
+
+        filterRepos.forEach((repo)=> {
+            repoC.innerHTML += `
+                <div class="flex flex-col bg-[#1E1B4B]/60 border border-indigo-400/20 rounded-2xl p-5 m-5 text-indigo-200">
+                    <i class="fa-brands fa-github fa-xs"></i>
+
+                    <div class="text-4xl font-bold text-white">
+                        ${repo.name}
+                    </div>
+
+                    <div class="font-bold m-1 text-[#A78BFA]">
+                        ${repo.language || "Non spécifié"}
+                    </div>
+
+                    <div class="font-bold m-1 ml-auto justify-end text-indigo-300/70">
+                        <p>Dernière mise à jour :</p>
+                        <p>${new Date(repo.updated_at).toLocaleDateString()}</p>
+                    </div>
+                </div>
+            `;
+        })
+    })
 }
   });
 }
