@@ -180,11 +180,15 @@ if(searchShortlist){
  const Annuler = document.querySelector('#Annuler');
  const AnnulerX = document.querySelector('#AnnulerX')
  const  bgblur = document.querySelector('#bgblur');
-  Annuler.addEventListener('click', function(){
+if(Annuler){
+      Annuler.addEventListener('click', function(){
     bgblur.classList.add('hidden') 
 })
-AnnulerX.addEventListener('click', function(){
+}
+if(AnnulerX){
+    AnnulerX.addEventListener('click', function(){
     bgblur.classList.add('hidden')
 })
+}
  
 
