@@ -7,6 +7,21 @@ const users = [];
 export function displayUsers(users) {
   containerOfUsers.innerHTML = "";
   users.forEach((user, i) => {
+    const githubUser ={
+        nom: user.name,
+        login: user.login,
+        pfp: user.avatar_url,
+        url: user.html_ur,
+        bio: user.bio,
+        creatAt : user.created_at,
+        location: user.location,
+        following : user.following,
+        followers: user.followers,
+        numberRepos: user.public_repos,
+        rate : "5/5",
+        statut: "À contacter",
+        id: users.length
+    }
     containerOfUsers.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10">
         <div class=" lg:grid lg:grid-cols-2">
@@ -88,7 +103,7 @@ export function displayUsers(users) {
             alert('Ce candidat existe déjà dans la shortlist')
             return;
         }else {
-            await addCandidats(user);
+            await addCandidats(githubUser);
 
         window.location.href ="shortlist.html"
         }
@@ -191,7 +206,7 @@ if(filterbuttons){
 }
   });
 }
-
+//repos
 export function displayRepos([repos]) {
   const repoC = document.querySelector("#repoC");
   repoC.innerHTML = "";

@@ -11,36 +11,36 @@ export async function shortlistCard() {
     usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
     shortlistContainer.innerHTML = "";
 
-    users.forEach((user, i) => {
+    users.forEach((githubUser, i) => {
         shortlistContainer.innerHTML += `
             <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
                     <div>
                         <div>
-                            <img src="${user.avatar_url}" alt="pfp img" class="w-32 h-32 rounded-full object-cover border-4 border-violet-400 shadow-lg m-2">
+                            <img src="${githubUser.pfp}" alt="pfp img" class="w-32 h-32 rounded-full object-cover border-4 border-violet-400 shadow-lg m-2">
                         </div>
                     </div>
 
                     <div class="m-2 text-sm text-indigo-200">
                         <div class="m-5">
                             <h1 class="font-bold text-2xl">
-                                <a href="${user.html_url}" 
+                                <a href="${githubUser.url}" 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="underline text-purple-300 hover:text-purple-400">
-                                    @${user.login}
+                                    @${githubUser.login}
                                 </a>
                             </h1>
 
-                            ${user.name ? `<p>${user.name}</p>` : ""}
+                            ${githubUser.nom ? `<p>${githubUser.nom}</p>` : ""}
                         </div>
 
-                        ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
-                        <p class="m-1">Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
-                        ${user.location ? `<p class="flex">${user.location}</p>` : ""}
+                        ${githubUser.bio ? `<p class="m-1"><em>${githubUser.bio}</em></p>` : ""}
+                        <p class="m-1">Membre depuis : ${new Date(githubUser.creatAt).toLocaleDateString("fr-FR")}</p>
+                        ${githubUser.location ? `<p class="flex">${githubUser.location}</p>` : ""}
 
                         <p class="m-1">Link to github profile:
-                            <a href="${user.html_url}" 
+                            <a href="${githubUser.url}" 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="underline text-purple-300 hover:text-purple-400">
@@ -58,13 +58,14 @@ export async function shortlistCard() {
                     <p>&#9733;</p>
                     <p>&#9733;</p>
                     </div>
+                    <p class="bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green-400 transition-colors font-bold">À contacter</p>
                     <button 
-                    data-id="${user.id}" 
+                    data-id="${githubUser.id}" 
                     class="editbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
                     Modifier 
                     </button>
                     <button 
-                    data-id="${user.id}" 
+                    data-id="${githubUser.id}" 
                     class="deletbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
                     Delete
                     </button>
