@@ -52,11 +52,11 @@ export async function shortlistCard() {
                 </div>
                 <div class="flex flex-row ml-auto justify-end">
                      <div class="flex flex-row m-5">
-                    <p>&#9733;</p>
-                    <p>&#9733;</p>
-                    <p>&#9733;</p>
-                    <p>&#9733;</p>
-                    <p>&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
                     </div>
                     <p class="bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green-400 transition-colors font-bold">À contacter</p>
                     <button 
