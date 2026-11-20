@@ -1,19 +1,25 @@
-import { mockApi,  removeCandidat } from "./api.js";
+import { mockApi, removeCandidat } from "./api.js";
 const usersCounteur = document.querySelector("#usersCounteur");
-const shortlistbtn = document.querySelector('.shortlistbtn');
-const shortlistContainer = document.querySelector('#shortlistC');
+const shortlistbtn = document.querySelector(".shortlistbtn");
+const shortlistContainer = document.querySelector("#shortlistC");
 
+const searchShortlist = document.querySelector("#searchShortlist");
 
+const enregistrer = document.querySelector("#enregistrer");
+const statutPopup = document.querySelector("#statut");
+const statutC = document.querySelector("#statutC");
+const ratePopup = document.querySelector("#rate");
+const notePopup = document.querySelector("#note");
 
 export async function shortlistCard() {
-    let users = await mockApi();
+  let users = await mockApi();
 
-    usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
-    shortlistContainer.innerHTML = "";
+  usersCounteur.textContent = `${users.length} candidat(s) dans votre shortlist`;
+  shortlistContainer.innerHTML = "";
 
-    users.forEach((githubUser, i) => {
-        shortlistContainer.innerHTML += `
-            <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
+  users.forEach((githubUser, i) => {
+    shortlistContainer.innerHTML += `
+            <article data-id="${githubUser.id}" class="usercard bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
                     <div>
                         <div>
@@ -51,14 +57,14 @@ export async function shortlistCard() {
                     
                 </div>
                 <div class="flex flex-row ml-auto justify-end">
-                     <div class="flex flex-row m-5">
-                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200">&#9733;</p>
+                     <div id="starsRating" class="flex flex-row m-5">
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
                     </div>
-                    <p class="bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green-400 transition-colors font-bold">À contacter</p>
+                    <p class="statutC bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green-400 transition-colors font-bold">À contacter</p>
                     <button 
                     data-id="${githubUser.id}" 
                     class="editbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
@@ -71,33 +77,29 @@ export async function shortlistCard() {
                     </button>
                 </div>
 
-            </div>
+            </article>
         `;
-       const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
-       const editbtn = shortlistContainer.querySelector(".editbtn")[i];
-    });
+    const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
+    const editbtn = shortlistContainer.querySelectorAll(".editbtn")[i];
+    const usercard = shortlistContainer.querySelectorAll(".usercard")[i];
+    const statutC = shortlistContainer.querySelectorAll('.statutC')[i]
+  });
 }
 
-
-
-
 //search by username in shortlist
-const searchShortlist = document.querySelector('#searchShortlist');
-console.log(window.location.href)
-console.log(searchShortlist)
 
-if(searchShortlist){
-    searchShortlist.addEventListener('input', async function () {
+if (searchShortlist) {
+  searchShortlist.addEventListener("input", async function () {
     const userSearching = searchShortlist.value.trim();
 
     const users = await mockApi();
 
-    const filterUsesr = users.filter((user)=>{
-        return user.login.includes(userSearching);
-    })
+    const filterUsesr = users.filter((user) => {
+      return user.login.includes(userSearching);
+    });
     shortlistContainer.innerHTML = "";
-    filterUsesr.forEach((user, i)=>{
-        shortlistContainer.innerHTML += `
+    filterUsesr.forEach((user, i) => {
+      shortlistContainer.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10 lg:grid lg:grid-cols-2">
                 <div class="flex flex-row justify-center max-sm:flex-row items-center gap-6 justify-start">
                     <div>
@@ -110,11 +112,11 @@ if(searchShortlist){
                             rel="noopener noreferrer"
                             class="underline text-purple-300 hover:text-purple-400">
                             @${user.login}</a></h1>
-                        ${user.name ? `<p>${user.name}</p>`: ""}
+                        ${user.name ? `<p>${user.name}</p>` : ""}
                         </div>
                         ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
                         <p class="m-1">📅 Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
-                        ${user.location ? `<p class="flex">📍 ${user.location}</p>`: "" }
+                        ${user.location ? `<p class="flex">📍 ${user.location}</p>` : ""}
                         <p class="m-1">link to github profile : 
                             <a href="${user.html_url}" 
                             target="_blank"
@@ -128,68 +130,98 @@ if(searchShortlist){
                 <button class="deletbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold ml-auto justify-end" >delet</button>
     </div>
     `;
-    })
-})
-
+    });
+  });
 }
 
+//delet
+if (shortlistContainer) {
+  shortlistContainer.addEventListener("click", async function (e) {
+    const buttondelet = e.target.closest(".deletbtn");
+    if (!buttondelet) return;
 
- //delet
- if(shortlistContainer){
-    shortlistContainer.addEventListener("click", async function (e) {
-            const buttondelet = e.target.closest(".deletbtn")
-            if(!buttondelet) return;
+    const id = Number(buttondelet.dataset.id);
 
-            const id = Number(buttondelet.dataset.id);
+    console.log("candidat id :", id);
 
-            console.log("candidat id :", id); 
+    if (!confirm("Supprimer cet utilisateur ?")) return;
 
-            if (!confirm("Supprimer cet utilisateur ?")) return;
+    try {
+      await removeCandidat(id);
+      // users = users.filter((user) => Number(user.id) !== id);
 
-            try {
-                await removeCandidat(id);
-                // users = users.filter((user) => Number(user.id) !== id);
+      console.log("candidate deleted!");
 
-                console.log("candidate deleted!");
+      await shortlistCard();
+    } catch (error) {
+      console.error(error);
+    }
+  });
+}
 
-                await shortlistCard();
+//edit
+let editId = null;
+if (shortlistContainer) {
+  shortlistContainer.addEventListener("click", function (e) {
+    const buttonedit = e.target.closest(".editbtn");
+    const usercard = e.target.closest(".usercard");
+    const statutC = usercard.querySelector(".statutC");
+    console.log("the edit btn"+buttonedit);
+    console.log("edit statut container"+ statutC)
 
-            } catch (error) {
-                console.error(error);
-            }
-        });    
- }
-
- //edit
- if(shortlistContainer){
-    shortlistContainer.addEventListener('click', async function (e) {
-        bgblur.classList.remove('hidden')
-        // const buttonedit = e.target.closest(".editbtn")
-        // if(!buttonedit) return;
+    // editId = Number(buttonedit.dataset.id);
+    if (!buttonedit) return;
+    bgblur.classList.remove("hidden");
+    if (enregistrer) {
+      enregistrer.addEventListener("click", async function (e) {
+        console.log("of popup :" + statutPopup.value);
+        console.log("of popup :" + ratePopup.value);
+        console.log("of popup :" + notePopup.value);
         
-        // const idedit = Number(buttonedit.dataset.id);
-
-        // console.log('candidat id :', id);
-        // try{
-        //     bgblur.classList.remove('hidden')
-        // }catch(error){
-        //     console.error(error);
-        // }
-        
-    })
- }
- const Annuler = document.querySelector('#Annuler');
- const AnnulerX = document.querySelector('#AnnulerX')
- const  bgblur = document.querySelector('#bgblur');
-if(Annuler){
-      Annuler.addEventListener('click', function(){
-    bgblur.classList.add('hidden') 
-})
+        // const Refusé = {
+        //   color: "red",
+        // };
+        // const Retenu = {
+        //   color: "orange",
+        // };
+        // const Entretien = {
+        //   color: "yellow",
+        // };
+        if (statutPopup.value === "Refusé") {
+          statutC.textContent = "";
+          statutC.textContent = `${statutPopup.value}`
+          statutC.className = "statutC bg-red-200 text-red-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-red-400 transition-colors font-bold";
+        }else if (statutPopup.value === "Retenu"){
+            statutC.textContent = "";
+            statutC.textContent = `${statutPopup.value}`;
+            statutC.className = "statutC bg-orange-200 text-orange-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-orange-400 transition-colors font-bold";
+        }else if(statutPopup.value === "Entretien"){
+            statutC.textContent = "";
+            statutC.textContent = `${statutPopup.value}`;
+            statutC.className = "statutC bg-yellow-200 text-yellow-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-yellow-400 transition-colors font-bold";
+        }else if(statutPopup.value === "À contacter"){
+           statutC.textContent = "";
+          statutC.textContent = `${statutPopup.value}`
+          statutC.className = "statutC bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green  -400 transition-colors font-bold";
+        }
+        bgblur.classList.add("hidden");
+      });
+    }
+  });
 }
-if(AnnulerX){
-    AnnulerX.addEventListener('click', function(){
-    bgblur.classList.add('hidden')
-})
-}
- 
+//submit change
 
+//close and open popup
+const Annuler = document.querySelector("#Annuler");
+const AnnulerX = document.querySelector("#AnnulerX");
+const bgblur = document.querySelector("#bgblur");
+if (Annuler) {
+  Annuler.addEventListener("click", function () {
+    bgblur.classList.add("hidden");
+  });
+}
+if (AnnulerX) {
+  AnnulerX.addEventListener("click", function () {
+    bgblur.classList.add("hidden");
+  });
+}
