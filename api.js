@@ -91,7 +91,7 @@ export async function removeCandidat(id) {
 }
 export async function editCandidat(id) {
     try{
-        const response = await fetch("https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats",
+        const response = await fetch("https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats/${id}",
             {
                 method: "PUT"
             }
