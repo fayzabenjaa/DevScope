@@ -1,4 +1,4 @@
-import { mockApi, removeCandidat } from "./api.js";
+import { mockApi, removeCandidat, editCandidat } from "./api.js";
 const usersCounteur = document.querySelector("#usersCounteur");
 const shortlistbtn = document.querySelector(".shortlistbtn");
 const shortlistContainer = document.querySelector("#shortlistC");
@@ -149,6 +149,99 @@ if (shortlistContainer) {
   });
 }
 
+//edit
+// let editId = null;
+// if (shortlistContainer) {
+//   shortlistContainer.addEventListener("click", function (e) {
+//     const buttonedit = e.target.closest(".editbtn");
+//     const usercard = e.target.closest(".usercard");
+//     const statutC = usercard.querySelector(".statutC");
+//     const starsRating = usercard.querySelector(".starsRating")
+//     console.log("the edit btn"+buttonedit);
+//     console.log("edit statut container"+ statutC)
+//     console.log("starts container"+ starsRating)
+
+//     // editId = Number(buttonedit.dataset.id);
+//     if (!buttonedit) return;
+//     bgblur.classList.remove("hidden");
+//     if (enregistrer) {
+//       enregistrer.addEventListener("click", async function (e) {
+//         console.log("of popup :" + statutPopup.value);
+//         console.log("of popup :" + ratePopup.value);
+//         console.log("of popup :" + notePopup.value);
+//         //statut
+//         if (statutPopup.value === "Refusé") {
+//           statutC.textContent = "";
+//           statutC.textContent = `${statutPopup.value}`
+//           statutC.className = "statutC bg-red-200 text-red-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-red-400 transition-colors font-bold";
+//         }else if (statutPopup.value === "Retenu"){
+//             statutC.textContent = "";
+//             statutC.textContent = `${statutPopup.value}`;
+//             statutC.className = "statutC bg-orange-200 text-orange-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-orange-400 transition-colors font-bold";
+//         }else if(statutPopup.value === "Entretien"){
+//             statutC.textContent = "";
+//             statutC.textContent = `${statutPopup.value}`;
+//             statutC.className = "statutC bg-yellow-200 text-yellow-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-yellow-400 transition-colors font-bold";
+//         }else if(statutPopup.value === "À contacter"){
+//            statutC.textContent = "";
+//           statutC.textContent = `${statutPopup.value}`
+//           statutC.className = "statutC bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green  -400 transition-colors font-bold";
+//         }
+//         //starts
+//         if(ratePopup.value === "5/5"){
+//             starsRating.innerHTML ="";
+//             starsRating.innerHTML+= `
+//             <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//             `;
+//         }else if(ratePopup.value === "4/5"){
+//             starsRating.innerHTML ="";
+//             starsRating.innerHTML+= `
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//             `;
+//         }else if (ratePopup.value === "3/5"){
+//             starsRating.innerHTML ="";
+//             starsRating.innerHTML+= `
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//             `;
+//         }else if ( ratePopup.value === "2/5"){
+//             starsRating.innerHTML ="";
+//             starsRating.innerHTML+= `
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//             `;
+//         }else if ( ratePopup.value === "1/5"){
+//             starsRating.innerHTML ="";
+//             starsRating.innerHTML+= `
+//                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//                     <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+//             `;
+//         }
+
+//         bgblur.classList.add("hidden");
+//       });
+//     }
+//   });
+// }
+//submit change
+
 //close and open popup
 const Annuler = document.querySelector("#Annuler");
 const AnnulerX = document.querySelector("#AnnulerX");
@@ -166,7 +259,7 @@ if (AnnulerX) {
 
 
 
-// cedit 
+
 let editId = null;
 let currentUserCard = null;
 shortlistContainer.addEventListener("click", function (e) {
@@ -211,6 +304,7 @@ if (enregistrer) {
             statutC.className =
                 "statutC bg-green-200 text-green-600 m-5 h-10 p-2 rounded-2xl font-bold";
         }
+
         // Change rating
         const rating = Number(ratePopup.value.split("/")[0]);
 
