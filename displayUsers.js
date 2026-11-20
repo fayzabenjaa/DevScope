@@ -20,7 +20,7 @@ export function displayUsers(users) {
         numberRepos: user.public_repos,
         rate : "5/5",
         statut: "À contacter",
-        id: users.length
+        note: ""
     }
     containerOfUsers.innerHTML += `
     <div class="bg-indigo-900 text-white rounded-2xl lg:w-360 m-10">
