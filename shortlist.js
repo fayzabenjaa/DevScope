@@ -57,7 +57,7 @@ export async function shortlistCard() {
                     
                 </div>
                 <div class="flex flex-row ml-auto justify-end">
-                     <div id="starsRating" class="flex flex-row m-5">
+                     <div class="starsRating flex flex-row m-5">
                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
@@ -82,7 +82,8 @@ export async function shortlistCard() {
     const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
     const editbtn = shortlistContainer.querySelectorAll(".editbtn")[i];
     const usercard = shortlistContainer.querySelectorAll(".usercard")[i];
-    const statutC = shortlistContainer.querySelectorAll('.statutC')[i]
+    const statutC = shortlistContainer.querySelectorAll('.statutC')[i];
+    const starsRating = shortlistContainer.querySelectorAll('.starsRating')[i];
   });
 }
 
@@ -166,8 +167,10 @@ if (shortlistContainer) {
     const buttonedit = e.target.closest(".editbtn");
     const usercard = e.target.closest(".usercard");
     const statutC = usercard.querySelector(".statutC");
+    const starsRating = usercard.querySelector(".starsRating")
     console.log("the edit btn"+buttonedit);
     console.log("edit statut container"+ statutC)
+    console.log("starts container"+ starsRating)
 
     // editId = Number(buttonedit.dataset.id);
     if (!buttonedit) return;
@@ -177,16 +180,7 @@ if (shortlistContainer) {
         console.log("of popup :" + statutPopup.value);
         console.log("of popup :" + ratePopup.value);
         console.log("of popup :" + notePopup.value);
-        
-        // const Refusé = {
-        //   color: "red",
-        // };
-        // const Retenu = {
-        //   color: "orange",
-        // };
-        // const Entretien = {
-        //   color: "yellow",
-        // };
+        //statut
         if (statutPopup.value === "Refusé") {
           statutC.textContent = "";
           statutC.textContent = `${statutPopup.value}`
@@ -204,6 +198,54 @@ if (shortlistContainer) {
           statutC.textContent = `${statutPopup.value}`
           statutC.className = "statutC bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green  -400 transition-colors font-bold";
         }
+        //starts
+        if(ratePopup.value === "5/5"){
+            starsRating.innerHTML ="";
+            starsRating.innerHTML+= `
+            <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+            `;
+        }else if(ratePopup.value === "4/5"){
+            starsRating.innerHTML ="";
+            starsRating.innerHTML+= `
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+            `;
+        }else if (ratePopup.value === "3/5"){
+            starsRating.innerHTML ="";
+            starsRating.innerHTML+= `
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+            `;
+        }else if ( ratePopup.value === "2/5"){
+            starsRating.innerHTML ="";
+            starsRating.innerHTML+= `
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+            `;
+        }else if ( ratePopup.value === "1/5"){
+            starsRating.innerHTML ="";
+            starsRating.innerHTML+= `
+                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+                    <p class="text-2xl m-1 text-green-200 ">&#9734;</p>
+            `;
+        }
+
         bgblur.classList.add("hidden");
       });
     }
