@@ -29,7 +29,7 @@ export async function shortlistCard() {
 
                     <div class="m-2 text-sm text-indigo-200">
                         <div class="m-5">
-                            <h1 class="font-bold text-2xl">
+                            <h1 class="font-bold lg:text-2xl">
                                 <a href="${githubUser.url}" 
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -56,7 +56,7 @@ export async function shortlistCard() {
                     </div>
                     
                 </div>
-                <div class="flex flex-row ml-auto justify-end">
+                <div class="flex flex-row max-sm:grid max-sm:grid-cols-2 ml-auto justify-end">
                      <div class="starsRating flex flex-row m-5">
                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
                     <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
