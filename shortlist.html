@@ -36,7 +36,7 @@
         </div>
     </main>
     <div id="bgblur"
-        class="flex justify-center w-full h-full bg-[rgba(0,0,0,0.5)] fixed inset-0 overflow-y-auto overflow-x-hidden fixed z-500 p-2 ">
+        class="flex justify-center w-full h-full bg-[rgba(0,0,0,0.5)] fixed inset-0 overflow-y-auto overflow-x-hidden fixed z-500 p-2 hidden">
         <div id="popup"
             class="bg-gradient-to-br from-[#11152F] via-[#29205C] to-[#49318B] bg-fixed rounded-2xl relative lg:w-150 max-sm:w-80 lg:h-130 flex-row text-start max-sm:justify-center max-sm:items-center mt-10 text-white">
             <div class=" m-3">
@@ -49,7 +49,7 @@
             <div class="flex flex-col m-3">
                 <label for="text" class="m-3">statut de recrutement</label>
                 <select name="text" id="statut" class=" bg-indigo-950 p-3 rounded-2xl border">
-                    <option value="contacter">À contacter</option>
+                    <option value="À contacter">À contacter</option>
                     <option value="Entretien">Entretien</option>
                     <option value="Retenu">Retenu</option>
                     <option value="Refusé">Refusé</option>
@@ -57,17 +57,17 @@
             </div>
             <div class="flex flex-col m-3">
                 <label for="text" class="m-2">note</label>
-                <select name="text" id="note" class="bg-indigo-950 p-3 rounded-2xl border">
-                    <option value="5">5/5</option>
-                    <option value="4">4/5</option>
-                    <option value="3">3/5</option>
-                    <option value="2">2/5</option>
-                    <option value="1">1/5</option>
+                <select name="text" id="rate" class="bg-indigo-950 p-3 rounded-2xl border">
+                    <option value="5/5">5/5</option>
+                    <option value="4/5">4/5</option>
+                    <option value="3/5">3/5</option>
+                    <option value="2/5">2/5</option>
+                    <option value="1/5">1/5</option>
                 </select>
             </div>
             <div class="m-3 flex flex-col">
                 <label for="text">note interne</label>
-                <input type="text" placeholder="entrer la note" class="bg-indigo-950 m-2 p-5 rounded-2xl w-70 border">
+                <input type="text" id="note" placeholder="entrer la note" class="bg-indigo-950 m-2 p-5 rounded-2xl w-70 border">
             </div>
             <div class="flex flex-row ml-auto justify-end">
                 <button id="Annuler" class="Annuler bg-[#1C2233] rounded-2xl p-2 m-2">Annuler</button>
@@ -79,7 +79,6 @@
     
 </body>
 <script type="module" src="script.js" defer></script>
-<script type="module" src="storage.js" defer></script>
 <script type="module" src="shortlist.js" defer></script>
 
 </html>
