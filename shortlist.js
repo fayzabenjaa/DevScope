@@ -115,8 +115,8 @@ if (searchShortlist) {
                         ${user.name ? `<p>${user.name}</p>` : ""}
                         </div>
                         ${user.bio ? `<p class="m-1"><em>${user.bio}</em></p>` : ""}
-                        <p class="m-1">📅 Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
-                        ${user.location ? `<p class="flex">📍 ${user.location}</p>` : ""}
+                        <p class="m-1"> Membre depuis : ${new Date(user.created_at).toLocaleDateString("fr-FR")}</p>
+                        ${user.location ? `<p class="flex"> ${user.location}</p>` : ""}
                         <p class="m-1">link to github profile : 
                             <a href="${user.html_url}" 
                             target="_blank"
@@ -176,7 +176,8 @@ if (AnnulerX) {
 //edit
 let editId = null;
 let currentUserCard = null;
-shortlistContainer.addEventListener("click", function (e) {
+if(shortlistContainer){
+    shortlistContainer.addEventListener("click", function (e) {
   const buttonedit = e.target.closest(".editbtn");
 
   if (!buttonedit) return;
@@ -189,6 +190,7 @@ shortlistContainer.addEventListener("click", function (e) {
 
   bgblur.classList.remove("hidden");
 });
+}
 if (enregistrer) {
   enregistrer.addEventListener("click", async function () {
     if (!currentUserCard || !editId) return;
