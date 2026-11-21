@@ -109,3 +109,4 @@ export async function editCandidat(id, updatedData) {
         throw error;
     }
 }
+

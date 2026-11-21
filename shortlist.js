@@ -141,15 +141,10 @@ if (shortlistContainer) {
     if (!buttondelet) return;
     const id = Number(buttondelet.dataset.id);
 
-    console.log("candidat id :", id);
-
     if (!confirm("Supprimer cet utilisateur ?")) return;
 
     try {
       await removeCandidat(id);
-      // users = users.filter((user) => Number(user.id) !== id);
-
-      console.log("candidate deleted!");
 
       await shortlistCard();
     } catch (error) {
@@ -185,8 +180,6 @@ if(shortlistContainer){
   editId = Number(buttonedit.dataset.id);
 
   currentUserCard = buttonedit.closest(".usercard");
-
-  console.log("Editing candidate:", editId);
 
   bgblur.classList.remove("hidden");
 });

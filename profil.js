@@ -55,8 +55,3 @@
         }
 
     Analyse.addEventListener('click', showUser );
-
-
-
-
-

@@ -1,8 +1,8 @@
 ## DevScope
 ## 1. Présentation du projet
 
-DevScope est une application web qui permet de rechercher des développeurs sur GitHub, de consulter leurs profils et leurs dépôts publics, puis de gérer une shortlist de candidats à l'aide d'une API REST (MockAPI).
 
+DevScope est une application web qui permet de rechercher des développeurs sur GitHub, de consulter leurs profils et leurs dépôts publics, puis de gérer une shortlist de candidats à l'aide d'une API REST (MockAPI).
 L'objectif du projet est de faciliter la recherche et la sélection de profils de développeurs grâce à une interface simple et intuitive.
 
 ## 2. Fonctionnalités réalisées

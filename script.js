@@ -20,16 +20,6 @@ const error = document.querySelector('#error');
     inputOne.classList.remove("border-red-500");
 
     window.location.href = `profil.html?username=${encodeURIComponent(userLogin)}`;
-    // try {
-    //     const userData = await getData(userLogin);
-    //     displayUsers([userData]);
-        
-    // }
-    // catch (error){
-    //     error.innerText = "Utilisateur introuvable";
-    //     console.log(error);
-    // }
-
     
 }
 

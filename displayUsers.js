@@ -223,5 +223,5 @@ export function displayRepos([repos]) {
             </div>
         `;
   });
-  console.log(repos);
 }
+
