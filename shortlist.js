@@ -71,9 +71,9 @@ export async function shortlistCard() {
     const deletbnt = shortlistContainer.querySelectorAll(".deletbtn")[i];
     const editbtn = shortlistContainer.querySelectorAll(".editbtn")[i];
     const usercard = shortlistContainer.querySelectorAll(".usercard")[i];
-    const statutC = shortlistContainer.querySelectorAll('.statutC')[i];
-    const starsRating = shortlistContainer.querySelectorAll('.starsRating')[i];
-    const note = shortlistContainer.querySelectorAll('.note')[i];
+    const statutC = shortlistContainer.querySelectorAll(".statutC")[i];
+    const starsRating = shortlistContainer.querySelectorAll(".starsRating")[i];
+    const note = shortlistContainer.querySelectorAll(".note")[i];
   });
 }
 
@@ -130,7 +130,6 @@ if (shortlistContainer) {
   shortlistContainer.addEventListener("click", async function (e) {
     const buttondelet = e.target.closest(".deletbtn");
     if (!buttondelet) return;
-
     const id = Number(buttondelet.dataset.id);
 
     console.log("candidat id :", id);
@@ -165,105 +164,72 @@ if (AnnulerX) {
   });
 }
 
-
-
-
 //edit
 let editId = null;
 let currentUserCard = null;
 shortlistContainer.addEventListener("click", function (e) {
-    const buttonedit = e.target.closest(".editbtn");
+  const buttonedit = e.target.closest(".editbtn");
 
-    if (!buttonedit) return;
+  if (!buttonedit) return;
 
-    editId = Number(buttonedit.dataset.id);
+  editId = Number(buttonedit.dataset.id);
 
-    currentUserCard = buttonedit.closest(".usercard");
+  currentUserCard = buttonedit.closest(".usercard");
 
-    console.log("Editing candidate:", editId);
+  console.log("Editing candidate:", editId);
 
-    bgblur.classList.remove("hidden");
+  bgblur.classList.remove("hidden");
 });
 if (enregistrer) {
-    enregistrer.addEventListener("click", function () {
+  enregistrer.addEventListener("click", async function () {
+    if (!currentUserCard || !editId) return;
 
-        if (!currentUserCard || !editId) return;
+    const statutC = currentUserCard.querySelector(".statutC");
+    const starsRating = currentUserCard.querySelector(".starsRating");
+    const note = currentUserCard.querySelector(".note");
 
-        const statutC = currentUserCard.querySelector(".statutC");
-        const starsRating = currentUserCard.querySelector(".starsRating");
-        const note = currentUserCard.querySelector(".note")
+    //Change status
+    if (statutPopup.value === "Refusé") {
+      statutC.textContent = "Refusé";
+      statutC.className =
+        "statutC bg-red-200 text-red-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    } else if (statutPopup.value === "Retenu") {
+      statutC.textContent = "Retenu";
+      statutC.className =
+        "statutC bg-orange-200 text-orange-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    } else if (statutPopup.value === "Entretien") {
+      statutC.textContent = "Entretien";
+      statutC.className =
+        "statutC bg-yellow-200 text-yellow-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    } else if (statutPopup.value === "À contacter") {
+      statutC.textContent = "À contacter";
+      statutC.className =
+        "statutC bg-green-200 text-green-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    }
 
-        //Change status
-        if (statutPopup.value === "Refusé") {
-            statutC.textContent = "Refusé";
-            statutC.className =
-                "statutC bg-red-200 text-red-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    // Change rating
+    const rating = Number(ratePopup.value.split("/")[0]);
 
-        } else if (statutPopup.value === "Retenu") {
-            statutC.textContent = "Retenu";
-            statutC.className =
-                "statutC bg-orange-200 text-orange-600 m-5 h-10 p-2 rounded-2xl font-bold";
+    starsRating.innerHTML = "";
 
-        } else if (statutPopup.value === "Entretien") {
-            statutC.textContent = "Entretien";
-            statutC.className =
-                "statutC bg-yellow-200 text-yellow-600 m-5 h-10 p-2 rounded-2xl font-bold";
-
-        } else if (statutPopup.value === "À contacter") {
-            statutC.textContent = "À contacter";
-            statutC.className =
-                "statutC bg-green-200 text-green-600 m-5 h-10 p-2 rounded-2xl font-bold";
-        }
-
-        // Change rating
-        const rating = Number(ratePopup.value.split("/")[0]);
-
-        starsRating.innerHTML = "";
-
-        for (let i = 1; i <= 5; i++) {
-            starsRating.innerHTML += `
+    for (let i = 1; i <= 5; i++) {
+      starsRating.innerHTML += `
                 <p class="text-2xl m-1 text-green-200 font-bold">
                     ${i <= rating ? "&#9733;" : "&#9734;"}
                 </p>
             `;
-        }
-        //change note
-        if(notePopup.value !== ""){
-            note.innerHTML="";
-            note.innerHTML=`${notePopup.value}`;
-        }
+    }
+    //change note
+    if (notePopup.value !== "") {
+      note.innerHTML = "";
+      note.innerHTML = `${notePopup.value}`;
+    }
+    // add to mockapi
+    
 
-        bgblur.classList.add("hidden");
+    bgblur.classList.add("hidden");
 
-        editId = null;
-        currentUserCard = null;
-    });
+    editId = null;
+    currentUserCard = null;
+  });
 }
-
-
-
-// if(enregistrer){
-//     enregistrer.addEventListener('click',async function(){
-//         if(editId === null || !currentUserCard) return;
-//         try{
-//             const users = await mockApi()
-//             const githubUser = users.find(
-//                 (user)=>Number(user.id) === editId
-//             );
-//             const updatedData= {
-//                 ...githubUser,
-//                 statut: statutPopup.value,
-//                 rate: ratePopup.value,
-//                 note: notePopup.value,
-//             }
-//             await editCandidat(editId,updatedData );
-//             bgblur.classList.add("hidden");
-//             editId = null;
-//             updatedUser = null;
-//             await shortlistCard();
-
-//         }catch(error){
-//             console.log("Error updating candidate:", error);
-//         }
-//     })
-// }
