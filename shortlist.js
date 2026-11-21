@@ -41,19 +41,28 @@ export async function shortlistCard() {
                             ${githubUser.nom ? `<p>${githubUser.nom}</p>` : ""}
                         </div>
 
-                        <div class="note"><em>aucune note</em></div>
+                        <div class="note"><em>${githubUser.note || "<em>aucune note</em>"}</em></div>
                     </div>
                     
                 </div>
                 <div class="flex flex-row max-sm:grid max-sm:grid-cols-2 ml-auto justify-end">
                      <div class="starsRating flex flex-row m-5">
-                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
-                    <p class="text-2xl m-1 text-green-200 font-bold">&#9733;</p>
+                    ${Array.from({ length: 5 }, (_, i) => `
+                        <p class="text-2xl m-1 text-green-200 font-bold">
+                        ${i < Number(githubUser.rate?.split("/")[0] || 5) ? "★" : "☆"}
+                        </p>
+                    `).join("")}
                     </div>
-                    <p class="statutC bg-green-200 text-green-600 m-5 max-sm:ml-3 h-10 p-2 rounded-2xl hover:bg-green-400 transition-colors font-bold">À contacter</p>
+                    <P class="statutC m-5 max-sm:ml-3 h-10 p-2 rounded-2xl font-bold
+                        ${githubUser.statut === "Refusé"
+                        ? "bg-red-200 text-red-600"
+                        : githubUser.statut === "Retenu"
+                        ? "bg-orange-200 text-orange-600"
+                        : githubUser.statut === "Entretien"
+                        ? "bg-yellow-200 text-yellow-600"
+                        : "bg-green-200 text-green-600"}">
+                        ${githubUser.statut || "À contacter"}
+                    </P>
                     <button 
                     data-id="${githubUser.id}" 
                     class="editbtn text-[#201744] m-5 max-sm:ml-3 h-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-colors font-bold ">
@@ -188,44 +197,29 @@ if (enregistrer) {
     const starsRating = currentUserCard.querySelector(".starsRating");
     const note = currentUserCard.querySelector(".note");
 
-    //Change status
-    if (statutPopup.value === "Refusé") {
-      statutC.textContent = "Refusé";
-      statutC.className =
-        "statutC bg-red-200 text-red-600 m-5 h-10 p-2 rounded-2xl font-bold";
-    } else if (statutPopup.value === "Retenu") {
-      statutC.textContent = "Retenu";
-      statutC.className =
-        "statutC bg-orange-200 text-orange-600 m-5 h-10 p-2 rounded-2xl font-bold";
-    } else if (statutPopup.value === "Entretien") {
-      statutC.textContent = "Entretien";
-      statutC.className =
-        "statutC bg-yellow-200 text-yellow-600 m-5 h-10 p-2 rounded-2xl font-bold";
-    } else if (statutPopup.value === "À contacter") {
-      statutC.textContent = "À contacter";
-      statutC.className =
-        "statutC bg-green-200 text-green-600 m-5 h-10 p-2 rounded-2xl font-bold";
-    }
-
-    // Change rating
-    const rating = Number(ratePopup.value.split("/")[0]);
-
-    starsRating.innerHTML = "";
-
-    for (let i = 1; i <= 5; i++) {
-      starsRating.innerHTML += `
-                <p class="text-2xl m-1 text-green-200 font-bold">
-                    ${i <= rating ? "&#9733;" : "&#9734;"}
-                </p>
-            `;
-    }
-    //change note
-    if (notePopup.value !== "") {
-      note.innerHTML = "";
-      note.innerHTML = `${notePopup.value}`;
-    }
+    note.textContent = notePopup.value || "aucune note";
     // add to mockapi
-    
+    try {
+    const users = await mockApi();
+
+    const userToUpdate = users.find(
+        user => Number(user.id) === editId
+    );
+
+    const updatedDat = {
+        ...userToUpdate,
+        rate: ratePopup.value,
+        statut: statutPopup.value,
+        note: notePopup.value,
+    };
+
+    await editCandidat(editId, updatedDat);
+
+    await shortlistCard();
+
+} catch (error) {
+    console.error(error);
+}
 
     bgblur.classList.add("hidden");
 
