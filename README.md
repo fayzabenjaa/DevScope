@@ -22,6 +22,31 @@ L'objectif du projet est de faciliter la recherche et la sélection de profils d
 - Navigation entre les différentes pages.
 - Interface responsive adaptée aux différents écrans.
 - Validation des champs de recherche.
+### Version 2 — Nouvelles fonctionnalités
+- Gestion de la shortlist :
+    - Affichage du statut de chaque candidat : À contacter, Entretien, Retenu ou Refusé.
+    - Affichage d'une note sur 5 pour chaque candidat.
+    - Ajout d'un commentaire pour chaque candidat.
+    - Modification du statut, de la note et du commentaire depuis une fenêtre de modification.
+    - Mise à jour automatique de la carte après modification, sans recharger la page.
+    - Suppression d'un candidat de la shortlist.
+    - Demande de confirmation avant la suppression.
+    - Mise à jour automatique de la liste et du compteur après suppression.
+
+- Recherche et filtrage des dépôts :
+    - Ajout d'un champ de recherche pour trouver un dépôt par son nom.
+    - Ajout d'une liste déroulante permettant de filtrer les dépôts par langage.
+    - Génération dynamique de la liste des langages à partir des dépôts récupérés.
+    - Affichage d'un message lorsqu'aucun dépôt ne correspond aux critères de recherche.
+
+- Optimisation des performances avec le cache :
+    - Création d'un nouveau module cache.js.
+    - Utilisation de localStorage pour enregistrer les profils et les dépôts consultés.
+    - Utilisation de JSON.stringify() pour enregistrer les données et de JSON.parse() pour les récupérer.
+    - Mise en place d'une durée de validité du cache de 10 minutes.
+    - Affichage immédiat des profils déjà consultés lorsque les données sont encore en cache.
+    - Nouvelle requête vers GitHub lorsque le cache a expiré.
+    - Chargement du profil et des dépôts en parallèle avec Promise.all() afin d'améliorer les performances et de réduire le temps d'attente.
 ## 3. Technologies et outils utilisés
 - HTML5 : pour structurer les pages de l'application.
 - Tailwind CSS : pour la mise en forme et la création d'une interface responsive.
@@ -44,6 +69,9 @@ La réalisation de ce projet m'a permis de renforcer mes compétences en dévelo
 - Amélioration de mes compétences en manipulation du DOM et en gestion des événements.
 - Gestion des états de chargement et des messages d'erreur.
 - Création d'interfaces responsives avec Tailwind CSS.
+- Utilisation des méthodes HTTP PUT et DELETE pour modifier et supprimer des données.
+- Utilisation de localStorage pour mettre en place un système de cache avec expiration.
+    
 ## 5. Sources de documentation
 
 Les ressources suivantes m'ont aidé à comprendre et à utiliser les technologies du projet.
