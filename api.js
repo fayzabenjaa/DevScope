@@ -89,15 +89,15 @@ export async function removeCandidat(id) {
         throw error;
     }
 }
-export async function editCandidat(id) {
+export async function editCandidat(id, updatedDat) {
     try{
-        const response = await fetch("https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats/${id}",
+        const response = await fetch(`https://6af5f25af6270fa08d68edd9.mockapi.io/api/v1/candidats/${id}`,
             {
                 method: "PUT",
                 headers: {
                     "content-Type": "application/json"
                 },
-                body: JSON.stringify(updatedData)
+                body: JSON.stringify(updatedDat)
             }
         );
         if(!response.ok) {
