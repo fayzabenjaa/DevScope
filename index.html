@@ -12,22 +12,35 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-[#11152F] via-[#29205C] to-[#49318B] bg-fixed">
-    <header class="flex justify-center items-center m-5">
-        <div class="flex bg-indigo-900 w-350 h-30 rounded-2xl">
-            <div class="justify-start">
-                <h1 class="font-bold text-white m-5 lg:text-4xl text-2xl">
-    <i class="fa-brands fa-github mr-2"></i>
-    DevScope
-</h1>
-            </div>
-            <div class="text-white ml-auto justify-end mb-10">
-                <a href="index.html"
-                    class="text-[#201744] m-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold hover:bg-[#8B5CF6] hover:scale-105
-    transition-all duration-300 inline-block">Recherche</a>
-                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-[#8B5CF6] transition-color font-bold hover:bg-[#8B5CF6] hover:scale-105
-    transition-all duration-300 inline-block">shortlist</a>
-            </div>
+    <header class="lg:flex max-sm:grid max-sm:grid-rows   justify-center items-center m-5">
+        <nav class="flex flex-col sm:flex-row items-center justify-between
+                gap-4 bg-indigo-900 rounded-2xl
+                w-full max-w-7xl mx-auto px-5 py-5">
+            <a href="index.html"
+           class="text-white font-bold text-3xl lg:text-4xl">
+            <i class="fa-brands fa-github mr-2"></i>
+            DevScope
+        </a>
+            <div class="flex items-center justify-center gap-3 sm:gap-5 w-full sm:w-auto">
+
+            <a href="index.html"
+               class="text-[#201744] bg-[#A78BFA] px-5 py-3
+                      rounded-2xl font-bold text-sm sm:text-base
+                      hover:bg-[#8B5CF6] hover:scale-105
+                      transition-all duration-300">
+                Recherche
+            </a>
+
+            <a href="shortlist.html"
+               class="text-white px-5 py-3 rounded-2xl
+                      font-bold text-sm sm:text-base
+                      hover:bg-[#8B5CF6] hover:scale-105
+                      transition-all duration-300">
+                Shortlist
+            </a>
+
         </div>
+        </nav>
     </header>
     <main class="lg:flex lg:flex-col lg:w-350 lg:justify-center lg:items-center">
         <div class="text-white m-20 text-center">
@@ -52,10 +65,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </button>
         </div>
-        <!-- FEATURES SECTION -->
 <section class="grid grid-cols-1 md:grid-cols-3 gap-4 w-[90%] md:w-[80%] mx-auto mt-8">
 
-    <!-- TALENTS -->
     <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
                 transition-all duration-300 hover:-translate-y-1
                 hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
@@ -69,7 +80,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         </p>
     </div>
 
-    <!-- PROJETS -->
     <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
                 transition-all duration-300 hover:-translate-y-1
                 hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
@@ -83,7 +93,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         </p>
     </div>
 
-    <!-- SHORTLIST -->
     <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
                 transition-all duration-300 hover:-translate-y-1
                 hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
