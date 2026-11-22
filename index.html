@@ -7,18 +7,25 @@
     <title>DevScope</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="shortlist.html"></script>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-[#11152F] via-[#29205C] to-[#49318B] bg-fixed">
-    <header class="flex justify-center items-center m-5 ">
-        <div class="grid grid-row bg-indigo-900 w-350 h-30 rounded-2xl">
+    <header class="flex justify-center items-center m-5">
+        <div class="flex bg-indigo-900 w-350 h-30 rounded-2xl">
             <div class="justify-start">
-                <h1 class="font-bold text-white m-5 lg:text-4xl text-2xl">DevScope</h1>
+                <h1 class="font-bold text-white m-5 lg:text-4xl text-2xl">
+    <i class="fa-brands fa-github mr-2"></i>
+    DevScope
+</h1>
             </div>
             <div class="text-white ml-auto justify-end mb-10">
                 <a href="index.html"
-                    class="text-[#201744] m-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Recherche</a>
-                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-[#8B5CF6] transition-color font-bold">shortlist</a>
+                    class="text-[#201744] m-10 bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold hover:bg-[#8B5CF6] hover:scale-105
+    transition-all duration-300 inline-block">Recherche</a>
+                <a href="shortlist.html" class="m-10 rounded-2xl p-2 hover:bg-[#8B5CF6] transition-color font-bold hover:bg-[#8B5CF6] hover:scale-105
+    transition-all duration-300 inline-block">shortlist</a>
             </div>
         </div>
     </header>
@@ -34,10 +41,63 @@
                     <input id="devOne" type="text" placeholder="entrez un nom d'utilisateur..."
                     class="bg-indigo-950 m-5 p-5 rounded-2xl w-full border">
                 </div>
-                <button id="btnAnalysefirst"
-                    class=" m-5 p-2 ml-auto justify-end text-[#201744] bg-[#A78BFA] p-2 rounded-2xl hover:bg-[#8B5CF6] transition-color font-bold">Analyse</button>
-            </form>
+                <button id="btnAnalysefirst" type="submit"
+    aria-label="Rechercher un développeur"
+    class="m-5 ml-auto flex items-center justify-center
+    w-16 h-16 text-[#201744] bg-[#A78BFA]
+    rounded-2xl hover:bg-[#8B5CF6]
+    hover:scale-105 transition-all duration-300">
+
+    <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+
+</button>
         </div>
+        <!-- FEATURES SECTION -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 w-[90%] md:w-[80%] mx-auto mt-8">
+
+    <!-- TALENTS -->
+    <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
+                transition-all duration-300 hover:-translate-y-1
+                hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
+
+        <i class="fa-solid fa-users text-[#ae91ff] text-2xl mb-4"></i>
+
+        <h2 class="text-2xl font-bold mb-3">Talents</h2>
+
+        <p class="text-[#c4bfd6] text-base">
+            Découverte de développeurs
+        </p>
+    </div>
+
+    <!-- PROJETS -->
+    <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
+                transition-all duration-300 hover:-translate-y-1
+                hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
+
+        <i class="fa-solid fa-code text-[#ae91ff] text-2xl mb-4"></i>
+
+        <h2 class="text-2xl font-bold mb-3">Projets</h2>
+
+        <p class="text-[#c4bfd6] text-base">
+            Analyse des dépôts GitHub
+        </p>
+    </div>
+
+    <!-- SHORTLIST -->
+    <div class="bg-[#292447] rounded-2xl p-6 text-center text-white
+                transition-all duration-300 hover:-translate-y-1
+                hover:bg-[#35305b] hover:shadow-lg hover:shadow-purple-500/20">
+
+        <i class="fa-solid fa-star text-[#ae91ff] text-2xl mb-4"></i>
+
+        <h2 class="text-2xl font-bold mb-3">Shortlist</h2>
+
+        <p class="text-[#c4bfd6] text-base">
+            Gestion des candidats
+        </p>
+    </div>
+
+</section>
     </main>
 </body>
 <script type="module" src="script.js" defer></script>
